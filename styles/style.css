@@ -1,0 +1,45 @@
+/* GLOBAL VARIABLES - for site-wide use */
+
+:root {
+    /* brand colors */
+    --color-1: #0B0D12;
+    --color-2: #111827;
+    --color-3: #9CA3AF;
+    --color-4: #F3F4F6;
+    --color-5: #FF3B30;
+
+    /* choose site-wide color scheme */
+    --color-background: var(--color-1);
+    --color-primary: var(--color-2);
+    --color-secondary: var(--color-3);
+    --color-tertiary: var(--color-4);
+
+    /* font family set */
+    --font-1-bebas: "Bebas Neue", "Impact", "Haettenschweiler", Arial Narrow, sans-serif;
+    --font-2-anton: "Anton", "Impact", "Haettenschweiler", Arial Narrow, sans-serif;
+    --font-3-oswald: "Oswald", "Helvetica Neue", Arial, sans-serif;
+    --font-4-montserrat: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    --font-5-league-spartan: "League Spartan", "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    --font-6-poppins: "Poppins", "Helvetica Neue", Arial, sans-serif;
+    --font-7-inter: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-8-manrope: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-9-barlow-condensed: "Barlow Condensed", "Helvetica Neue", Arial, sans-serif;
+    --font-10-archivo: "Archivo", "Helvetica Neue", Arial, sans-serif;
+
+    /* Choose site-wide font default */
+    --font-base: var(--font-7-inter);       /* body text default */
+    --font-heading: var(--font-1-bebas);    /* headings default */
+    --font-cta: var(--font-4-montserrat);   /* buttons/CTA Default */
+
+}
+
+
+/* LOCAL VARIABLES - for page-specific use */
+
+html {
+    font-family: var(--font-base);
+    font-size: 16px;                        /* convert to rem asap */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
