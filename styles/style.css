@@ -6,7 +6,7 @@
     --color-2: #111827;
     --color-3: #9CA3AF;
     --color-4: #F3F4F6;
-    --color-5: #FF3B30;
+    --color-5: darkred;
 
     /* choose site-wide color scheme */
     --color-background: var(--color-1);
@@ -33,13 +33,178 @@
 
 }
 
-
-/* LOCAL VARIABLES - for page-specific use */
-
-html {
+/* NORMALIZE AND RESET DEFAULT STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: var(--font-base);
-    font-size: 16px;                        /* convert to rem asap */
+    font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+}
+
+/* CUSTOM STYLES */
+
+/* body */
+.site {}
+
+/* header */
+.site-header {}
+.site-header__inner {}
+
+/* main */
+.site-main {}
+.site-main__inner {}
+
+/* footer */
+.site-footer {}
+.site-footer__inner {}
+.site-footer__platform {}
+.site-footer__legal {}
+
+/* dark-mode */
+.site--inverted {}
+
+/* brand */
+.brand {}
+.brand__logo {}
+.brand__name {}
+
+/* navigation */
+.nav {}
+
+.nav__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav__item {}
+.nav__link {}
+
+/* container */
+.container {}
+
+/* wrapper */
+.wrapper {}
+
+/* box */
+.box {}
+
+/* card */
+.card {}
+
+/* footer - image social plaforms */
+.icon {}
+
+/* headline */
+.headline {}
+.headline__main {}
+.headline__cta {}
+
+/* about */
+.about {}
+.about__main {}
+.about__cta {}
+
+/* program */
+.program {}
+.program__main {}
+.program__cta {}
+.program__box {}
+.program__img {}
+
+/* testimonials */
+.testimonials {}
+.testimonials__main {}
+.testimonials__cta {}
+.testimonials__img {}
+.testimonials__box {}
+.testimonials__card {}
+
+.testimonials-cta {}
+.testimonials-cta__img {}
+.testimonials-cta__box {}
+.testimonials-cta__card {}
+
+/* cta */
+.cta {}
+.cta__main {}
+.cta__cta {}
+.cta__box {}
+.cta__img {}
+
+.cta-gallery {}
+.cta-gallery__box {}
+.cta-gallery__img {}
+
+/*video*/
+.video {}
+
+.video--primary {
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 16 / 9;
+    height: auto;
+}
+
+/* paragraph */
+.p {}
+.p--primary {}
+.p--secondary {}
+
+/* heading fonts */
+.heading {} /* base */
+.heading--primary {}
+.heading--secondary {}
+.heading--tertiary {}
+.heading--title {}
+.heading--subtitle {}
+
+/* Button object */
+.btn {
+  display: inline-block;
+  font-family: var(--font-cta);
+  font-weight: 600;
+  text-decoration: none;
+  padding: .75rem 1.125rem;
+  border-radius: .5rem;
+  border: 2px solid transparent;
+  transition: background-color .2s ease, color .2s ease, transform .1s ease;
+  will-change: background-color, color, transform;
+  line-height: 1;
+}
+.btn--primary {
+  background-color: var(--color-5);
+  color: #fff;
+  border-color: var(--color-5);
+}
+
+.btn--secondary {
+  background-color: var(--color-1);
+  color: var(--color-4);
+  border-color: var(--color-4);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary:hover { background-color: #e0352b; } /* slightly darker than --color-5 */
+.btn--secondary:hover { background-color: #0a0c10; } /* slightly darker than --color-1 */
+
+.btn:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--color-5) 40%, white);
+  outline-offset: 2px;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+  .btn:hover, .btn:active { transform: none; }
 }
