@@ -9,7 +9,7 @@
   --font-heading:"Poppins","Helvetica Neue",Arial,sans-serif;
   --font-cta:"Montserrat","Helvetica Neue",Arial,sans-serif;
 
-  /* fluid type (GLOBAL heading scale) */
+  /* global heading scale */
   --step--1:clamp(.95rem,.35vw+.9rem,1.05rem);
   --step-0: clamp(1.05rem,.45vw+1rem,1.25rem);
   --step-1: clamp(1.6rem,1.2vw+1.1rem,2.1rem);   /* h4 / small headings */
@@ -17,7 +17,7 @@
   --step-3: clamp(3.2rem,3.6vw+1.7rem,4rem);     /* h2 / section (base scale) */
   --step-4: clamp(3.8rem, 5.2vw + 1.8rem, 5rem); /* hero title */
 
-  /* YOUR PERMANENT DIALS (used by classes below) */
+  /* permanent Dials - font sizes */
   --h1: var(--step-4);                                   /* hero/page title */
   --h2: 1.5rem;                                          /* section titles */
   --h3: 1.15rem;                                         /* sub-section */
@@ -205,4 +205,136 @@ b{font-weight:var(--bold-weight);font-size:inherit;line-height:inherit}
     hyphens:auto;
     overflow-wrap:anywhere;
   }
+}
+
+/* ===== Contact Page ===== */
+.contact{display:flex;flex-direction:column;gap:var(--space-4)}
+.contact__map-card,
+.contact__form-card{background:#fff;border-radius:14px;box-shadow:0 12px 28px rgba(0,0,0,.08);padding:var(--space-4)}
+
+.map-embed{width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden}
+.map-embed iframe{display:block;width:100%;height:100%;border:0}
+
+.contact__address{margin-top:var(--space-3)}
+.contact__phones a{text-decoration:underline}
+
+.contact__form{display:flex;flex-direction:column;gap:var(--space-3)}
+.form__row{display:flex;flex-direction:column;gap:.5rem}
+.form__label{font-weight:600}
+.form__input,.form__textarea{
+  appearance:none;border:1px solid #e5e7eb;border-radius:.6rem;
+  padding:0.85rem 1rem;background:#fff;color:var(--color-tertiary);
+  font:inherit;line-height:1.4;outline:none;transition:border-color .15s ease, box-shadow .15s ease
+}
+.form__input:focus,.form__textarea:focus{
+  border-color:var(--color-5);
+  box-shadow:0 0 0 3px color-mix(in oklab,var(--color-5) 24%, transparent)
+}
+.form__actions{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+
+/* Mobile tweaks */
+@media(max-width:640px){
+  .contact__map-card,.contact__form-card{padding:var(--space-3)}
+}
+
+/* ===== Pricing Page (improved + mobile-first) ===== */
+.pricing{display:flex;flex-direction:column;gap:var(--space-4)}
+.pricing__grid{
+  display:grid;gap:var(--space-3);
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:stretch;
+}
+@media(max-width:1024px){
+  .pricing__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:640px){
+  .pricing__grid{grid-template-columns:1fr}
+}
+
+.pricing__card{
+  position:relative;
+  background:#fff;border-radius:14px;
+  box-shadow:0 12px 28px rgba(0,0,0,.08);
+  padding:var(--space-4);
+  display:flex;flex-direction:column;gap:var(--space-3);
+  transition:transform .15s ease, box-shadow .15s ease;
+  outline:1px solid rgba(0,0,0,.06);
+}
+.pricing__card:hover,
+.pricing__card:focus-within{
+  transform:translateY(-2px);
+  box-shadow:0 18px 36px rgba(0,0,0,.12);
+}
+@media(max-width:640px){
+  .pricing__card{padding:var(--space-3)}
+}
+
+.pricing__head{display:flex;flex-direction:column;gap:.35rem}
+.pricing__numbers{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.pricing__price-current{
+  font-family:var(--font-heading);font-weight:800;
+  font-size:clamp(1.8rem,1.6vw+1.2rem,2.4rem);
+  letter-spacing:.01em;
+}
+.pricing__price-period{font-size:var(--step--1);opacity:.85;margin-left:.15rem}
+.pricing__price-old{
+  font-size:var(--step--1);text-decoration:line-through;color:var(--color-3)
+}
+
+.pricing__list{
+  list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-top:.25rem
+}
+.pricing__list li{
+  position:relative;padding-left:1.5rem;line-height:1.5
+}
+.pricing__list li::before{
+  content:"✓";position:absolute;left:0;top:0.05rem;
+  font-weight:800;color:var(--color-5)
+}
+
+.pricing__cta{margin-top:auto;display:flex;align-items:center}
+.pricing__cta .btn{width:100%}
+@media(min-width:641px){
+  .pricing__cta .btn{width:auto}
+}
+
+.pricing__note{text-align:center;opacity:.9}
+
+/* “Most Popular” badge on Premium */
+.pricing__card--popular{
+  outline:2px solid color-mix(in oklab,var(--color-5) 35%, transparent);
+  box-shadow:0 14px 34px rgba(0,0,0,.10), 0 0 0 6px color-mix(in oklab,var(--color-5) 12%, transparent);
+}
+.pricing__badge{
+  position:absolute;top:14px;right:14px;
+  background:var(--color-5);color:#fff;font-weight:700;
+  font-size:clamp(.7rem,.25vw+.7rem,.85rem);
+  padding:.35rem .55rem;border-radius:.5rem
+}
+
+/* VIP highlight */
+.pricing__card--vip{
+  background:
+    linear-gradient(135deg, #111827 0%, #0B0D12 55%, #151a22 100%);
+  color:#fff;
+  border:2px solid var(--color-5);
+  box-shadow:0 18px 40px rgba(0,0,0,.22),
+             0 0 0 6px color-mix(in oklab,var(--color-5) 16%, transparent);
+}
+.pricing__card--vip .heading{color:#fff}
+.pricing__card--vip .pricing__price-old{color:color-mix(in oklab,#ffffff 70%, var(--color-3))}
+.pricing__card--vip .pricing__list li{color:color-mix(in oklab,#ffffff 92%, var(--color-4))}
+.pricing__card--vip .pricing__list li::before{color:#ffd4b3}
+.pricing__card--vip .btn{border-color:var(--color-5)}
+.pricing__card--vip .btn.btn--primary{filter:saturate(1.1)}
+
+/* Accessibility focus for pricing cards */
+.pricing__card a.btn:focus-visible{
+  outline:3px solid var(--color-5);outline-offset:2px
+}
+
+/* Micro spacing tweaks on very small screens */
+@media(max-width:380px){
+  .pricing__price-current{font-size:1.7rem}
+  .pricing__badge{top:12px;right:12px;padding:.3rem .5rem}
 }
