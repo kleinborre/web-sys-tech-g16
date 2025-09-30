@@ -12,10 +12,17 @@
   /* fluid type (GLOBAL heading scale) */
   --step--1:clamp(.95rem,.35vw+.9rem,1.05rem);
   --step-0: clamp(1.05rem,.45vw+1rem,1.25rem);
-  --step-1: clamp(1.6rem,1.2vw+1.1rem,2.1rem);   /* h3 */
-  --step-2: clamp(2.1rem,2.2vw+1.2rem,2.9rem);   /* h2 */
-  --step-3: clamp(2.8rem,3.2vw+1.3rem,3.6rem);   /* large */
-  --step-4: clamp(3.4rem,4.8vw+1.4rem,4.6rem);   /* hero/section titles */
+  --step-1: clamp(1.6rem,1.2vw+1.1rem,2.1rem);   /* h4 / small headings */
+  --step-2: clamp(3rem,3.1vw+2.1rem,3.8rem);     /* h3 / subsection */
+  --step-3: clamp(3.2rem,3.6vw+1.7rem,4rem);     /* h2 / section (base scale) */
+  --step-4: clamp(3.8rem, 5.2vw + 1.8rem, 5rem); /* hero title */
+
+  /* YOUR PERMANENT DIALS (used by classes below) */
+  --h1: var(--step-4);                                         /* hero/page title */
+  --h2: 1.5rem;                                                /* section titles */
+  --h3: 1.15rem;                                         /* sub-section */
+  --h4: var(--step-1);                                         /* card/small titles */
+  --h-subtitle: clamp(0.5rem, 1.65vw + 0.5rem, 1.5rem);        /* hero subtitle */
 
   /* spacing */
   --space-1:clamp(8px,1.2vw,14px);--space-2:clamp(12px,1.8vw,18px);
@@ -64,7 +71,7 @@ b{font-weight:var(--bold-weight);font-size:inherit;line-height:inherit}
 .headline::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,rgba(0,0,0,.45) 40%,rgba(0,0,0,.28) 100%);pointer-events:none}
 .headline__main,.headline__cta{position:relative;width:100%;max-width:min(52rem,94%);align-self:flex-start}
 .headline .heading{color:var(--color-4)}
-.headline .heading--title{color:var(--color-4);text-shadow:2px 2px 6px rgba(0,0,0,.6)}    /* size comes from global .heading--title */
+.headline .heading--title{color:var(--color-4);text-shadow:2px 2px 6px rgba(0,0,0,.6)} /* size via .heading rules */
 .headline .heading--subtitle{color:#eef0f3;text-shadow:1px 1px 4px rgba(0,0,0,.5)}
 .headline__cta{display:flex;gap:var(--space-2);flex-wrap:wrap}
 
@@ -77,7 +84,7 @@ b{font-weight:var(--bold-weight);font-size:inherit;line-height:inherit}
 .about__cta{display:flex;flex-direction:column;gap:var(--space-3);background:var(--color-tertiary);color:var(--color-4);padding:var(--space-4);border-radius:12px}
 .about__list{display:flex;flex-direction:column;gap:.55rem;list-style:none}
 
-/* ========== Program (flex only) ========== */
+/* ========== Program ========== */
 .program{display:flex;flex-direction:column;gap:var(--space-4)}
 .program__title{text-align:center}
 .program__main{display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:center}
@@ -122,14 +129,20 @@ b{font-weight:var(--bold-weight);font-size:inherit;line-height:inherit}
 .site-footer__platform a:hover{background:color-mix(in oklab,var(--color-5) 10%, white);box-shadow:0 0 .9rem color-mix(in oklab,var(--color-5) 20%, transparent);transform:translateY(-1px)}
 .icon{width:32px;height:32px}
 .site-footer__legal{text-align:right;margin-left:auto}
-@media(max-width:640px){.site-footer__inner{flex-direction:column;align-items:center;text-align:center}.site-footer__legal{text-align:center;margin-left:0}}
+@media(max-width:640px){
+  .site-footer__inner{flex-direction:column;align-items:center;text-align:center}
+  .site-footer__legal{text-align:center;margin-left:0}
+}
 
-/* ========== Type Helpers (ONLY place that sets heading sizes) ========== */
-.heading{font-family:var(--font-heading);color:var(--color-tertiary);font-weight:700;font-size:1em;line-height:1.1} /* no size inflation here */
-.heading--title{font-size:var(--step-4);line-height:1.08}      /* hero / biggest */
-.heading--primary{font-size:var(--step-3);line-height:1.1}     /* section titles */
-.heading--secondary{font-size:var(--step-2);line-height:1.2}
-.heading--tertiary{font-size:var(--step-1);line-height:1.25}
+/* ========== Type Helpers (single source of truth) ========== */
+.heading{font-family:var(--font-heading);color:var(--color-tertiary);font-weight:700;font-size:1em;line-height:1.1}
+.heading--title{font-size:var(--h1);line-height:1.08}          /* hero / biggest */
+.heading--primary{font-size:var(--h2);line-height:1.1}         /* section titles */
+.heading--secondary{font-size:var(--h3);line-height:1.2}
+.heading--tertiary{font-size:var(--h4);line-height:1.25}
+/* subtitle (used in hero) */
+.heading--subtitle{font-size:var(--h-subtitle);line-height:1.3}
+
 .p{line-height:1.85}
 .p--primary{font-size:var(--step-0)}
 .p--secondary{font-size:var(--step-0)}
@@ -144,14 +157,15 @@ b{font-weight:var(--bold-weight);font-size:inherit;line-height:inherit}
 .btn:focus-visible{outline:3px solid var(--color-5);outline-offset:2px}
 .headline__cta .btn{min-width:16ch}
 
-/* ========== Mobile Tweaks (hero remains readable) ========== */
+/* ========== Mobile Tweaks (keep hero readable) ========== */
 @media(max-width:480px){
   .brand__logo{width:2.6rem;height:2.6rem}
   .headline{padding-inline:var(--space-3)}
   .headline__main,.headline__cta{max-width:100%}
+  /* keep existing hero title mobile behavior if you rely on this clamp */
   .heading--title{font-size:clamp(2.6rem,7vw,3.2rem)}
-  .heading--secondary{font-size:clamp(1.8rem,5vw,2.2rem)}
-  .heading--tertiary{font-size:clamp(1.4rem,4vw,1.8rem)}
+  /* subtitle already uses --h-subtitle clamp; no extra override needed */
+  /* secondary/tertiary already use fluid steps/your h2 fixed value */
   .program__box,.testimonials__card{flex:1 1 100%}
   .cta__main{gap:var(--space-2)}
 }
