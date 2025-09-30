@@ -18,11 +18,11 @@
   --step-4: clamp(3.8rem, 5.2vw + 1.8rem, 5rem); /* hero title */
 
   /* YOUR PERMANENT DIALS (used by classes below) */
-  --h1: var(--step-4);                                         /* hero/page title */
-  --h2: 1.5rem;                                                /* section titles */
+  --h1: var(--step-4);                                   /* hero/page title */
+  --h2: 1.5rem;                                          /* section titles */
   --h3: 1.15rem;                                         /* sub-section */
-  --h4: var(--step-1);                                         /* card/small titles */
-  --h-subtitle: clamp(0.5rem, 1.65vw + 0.5rem, 1.5rem);        /* hero subtitle */
+  --h4: var(--step-1);                                   /* card/small titles */
+  --h-subtitle: clamp(0.5rem, 1.65vw + 0.5rem, 1.5rem);  /* hero subtitle */
 
   /* spacing */
   --space-1:clamp(8px,1.2vw,14px);--space-2:clamp(12px,1.8vw,18px);
@@ -67,13 +67,40 @@ b{font-weight:var(--bold-weight);font-size:inherit;line-height:inherit}
 .nav__link:active{transform:translateY(0) scale(.98)}
 
 /* ========== Headline (hero) ========== */
-.headline{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:var(--space-3);min-height:86vh;color:var(--color-4);background-image:url("/images/background.jpg");background-size:cover;background-position:center;border-radius:12px;overflow:hidden;padding-block:var(--space-6);padding-inline:var(--space-4);margin-inline:auto}
+.headline{
+  position:relative;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;
+  gap:var(--space-3);
+  min-height: clamp(520px, 86vh, 920px);
+  color:var(--color-4);
+  background-image:url("../images/background.jpg");
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:50% 40%;
+  border-radius:12px;overflow:hidden;
+  padding-block:var(--space-6);padding-inline:var(--space-4);margin-inline:auto;
+}
 .headline::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,rgba(0,0,0,.45) 40%,rgba(0,0,0,.28) 100%);pointer-events:none}
+
 .headline__main,.headline__cta{position:relative;width:100%;max-width:min(52rem,94%);align-self:flex-start}
+.headline__main{max-width:min(60ch,52rem,94%)}
 .headline .heading{color:var(--color-4)}
-.headline .heading--title{color:var(--color-4);text-shadow:2px 2px 6px rgba(0,0,0,.6)} /* size via .heading rules */
-.headline .heading--subtitle{color:#eef0f3;text-shadow:1px 1px 4px rgba(0,0,0,.5)}
-.headline__cta{display:flex;gap:var(--space-2);flex-wrap:wrap}
+.headline .heading--title{
+  color:var(--color-4);
+  text-shadow:2px 2px 6px rgba(0,0,0,.6);
+  max-width:18ch;
+  text-wrap:balance;
+}
+.headline .heading--subtitle{
+  color:#eef0f3;
+  text-shadow:1px 1px 4px rgba(0,0,0,.5);
+  max-width:60ch;
+  text-wrap:balance;
+}
+.headline__cta{
+  display:flex;gap:var(--space-2);flex-wrap:wrap;
+  width:min(60ch,100%);
+}
 
 /* ========== About ========== */
 .about{display:flex;flex-direction:column;gap:var(--space-5)}
@@ -84,7 +111,7 @@ b{font-weight:var(--bold-weight);font-size:inherit;line-height:inherit}
 .about__cta{display:flex;flex-direction:column;gap:var(--space-3);background:var(--color-tertiary);color:var(--color-4);padding:var(--space-4);border-radius:12px}
 .about__list{display:flex;flex-direction:column;gap:.55rem;list-style:none}
 
-/* ========== Program ========== */
+/* ========== Program (flex only) ========== */
 .program{display:flex;flex-direction:column;gap:var(--space-4)}
 .program__title{text-align:center}
 .program__main{display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:center}
@@ -140,7 +167,6 @@ b{font-weight:var(--bold-weight);font-size:inherit;line-height:inherit}
 .heading--primary{font-size:var(--h2);line-height:1.1}         /* section titles */
 .heading--secondary{font-size:var(--h3);line-height:1.2}
 .heading--tertiary{font-size:var(--h4);line-height:1.25}
-/* subtitle (used in hero) */
 .heading--subtitle{font-size:var(--h-subtitle);line-height:1.3}
 
 .p{line-height:1.85}
@@ -157,15 +183,26 @@ b{font-weight:var(--bold-weight);font-size:inherit;line-height:inherit}
 .btn:focus-visible{outline:3px solid var(--color-5);outline-offset:2px}
 .headline__cta .btn{min-width:16ch}
 
-/* ========== Mobile Tweaks (keep hero readable) ========== */
+/* ========== Mobile Tweaks ========= */
 @media(max-width:480px){
   .brand__logo{width:2.6rem;height:2.6rem}
-  .headline{padding-inline:var(--space-3)}
+  .headline{padding-inline:var(--space-3);min-height:clamp(460px,80vh,760px);background-position:50% 30%}
   .headline__main,.headline__cta{max-width:100%}
-  /* keep existing hero title mobile behavior if you rely on this clamp */
-  .heading--title{font-size:clamp(2.6rem,7vw,3.2rem)}
-  /* subtitle already uses --h-subtitle clamp; no extra override needed */
-  /* secondary/tertiary already use fluid steps/your h2 fixed value */
+  .heading--title{font-size:clamp(2.6rem,7vw,3.2rem);max-width:16ch}
+  .headline .heading--subtitle{max-width:50ch}
   .program__box,.testimonials__card{flex:1 1 100%}
   .cta__main{gap:var(--space-2)}
+}
+
+/* Wide & tall viewport focal tweaks */
+@media (min-aspect-ratio: 16/9){ .headline{ background-position:50% 45% } }
+@media (max-aspect-ratio: 3/4){  .headline{ background-position:50% 35% } }
+
+/* Fallback if text-wrap: balance isn’t supported */
+@supports not (text-wrap: balance){
+  .headline .heading--title,
+  .headline .heading--subtitle{
+    hyphens:auto;
+    overflow-wrap:anywhere;
+  }
 }
