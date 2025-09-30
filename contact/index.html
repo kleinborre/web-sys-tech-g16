@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="../styles/style.css" />
   <title>Contact • The Titan Method</title>
 </head>
 <body class="site">
+  <!-- Header -->
   <header class="site-header">
     <div class="container site-header__inner">
-      <a href="index.html" class="brand">
-        <img src="images/logo.png" alt="The Titan Method Logo" class="brand__logo" />
+      <a href="../index.html" class="brand">
+        <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo" />
         <span class="brand__name">The Titan Method</span>
       </a>
 
+      <!-- Mobile nav toggle (no JS) -->
       <input type="checkbox" id="nav-toggle" class="nav__toggle" aria-label="Toggle navigation" />
       <label for="nav-toggle" class="nav__burger" aria-controls="primary-nav">
         <span class="bars"></span>
@@ -21,11 +23,11 @@
 
       <nav class="nav" aria-label="Primary">
         <ul id="primary-nav" class="nav__list">
-          <li class="nav__item"><a href="index.html#about" class="nav__link">About</a></li>
-          <li class="nav__item"><a href="index.html#program" class="nav__link">Program</a></li>
-          <li class="nav__item"><a href="index.html#testimonials" class="nav__link">Testimonials</a></li>
-          <li class="nav__item"><a href="pricing.html" class="nav__link">Pricing</a></li>
-          <li class="nav__item"><a href="contact.html" class="nav__link" aria-current="page">Contact</a></li>
+          <li class="nav__item"><a href="../index.html#about" class="nav__link">About</a></li>
+          <li class="nav__item"><a href="../index.html#program" class="nav__link">Program</a></li>
+          <li class="nav__item"><a href="../index.html#testimonials" class="nav__link">Testimonials</a></li>
+          <li class="nav__item"><a href="../pricing/" class="nav__link">Pricing</a></li>
+          <li class="nav__item"><a href="../contact/" class="nav__link" aria-current="page">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -45,7 +47,6 @@
       <section class="wrapper contact contact--map">
         <div class="contact__map-card box">
           <div class="map-embed" role="region" aria-label="Map showing our address">
-            <!-- Random Texas address: 600 Congress Ave, Austin, TX 78701 -->
             <iframe
               src="https://www.google.com/maps?q=600+Congress+Ave,+Austin,+TX+78701&output=embed"
               loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
@@ -69,7 +70,8 @@
           <h2 class="heading heading--primary">Send us a message</h2>
           <p class="p p--secondary">We’ll reply via the email you provide.</p>
 
-          <form class="contact__form" action="#" method="post" novalidate>
+          <!-- Submitting navigates to #contact-success (CSS :target modal) -->
+          <form class="contact__form" action="#contact-success" method="get" novalidate>
             <div class="form__row">
               <label for="name" class="form__label">Your Name</label>
               <input id="name" name="name" type="text" class="form__input"
@@ -104,13 +106,33 @@
     </div>
   </main>
 
+  <!-- Modal: Contact Success -->
+  <section id="contact-success" class="modal" role="dialog" aria-modal="true" aria-labelledby="contact-success-title">
+    <a class="modal__overlay" href="#" aria-label="Close dialog"></a>
+    <div class="modal__card" role="document">
+      <header class="modal__head">
+        <h2 id="contact-success-title" class="heading heading--primary">Message Sent</h2>
+        <a class="modal__close" href="#" aria-label="Close">&times;</a>
+      </header>
+      <div class="modal__body">
+        <p class="p p--primary">
+          Thanks for reaching out! Please check your email for a confirmation from us.
+          If you don’t see it in a few minutes, look in your Promotions/Spam folder.
+        </p>
+        <div class="modal__actions">
+          <a class="btn btn--primary" href="#">Back to Contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="site-footer">
     <div class="container site-footer__inner">
       <section class="wrapper site-footer__platform">
-        <a href="https://www.facebook.com/thetitanmethod"><img class="icon" src="images/facebook.png" alt="facebook" /></a>
-        <a href="https://www.instagram.com/thetitanmethod"><img class="icon" src="images/instagram.png" alt="instagram" /></a>
-        <a href="https://www.youtube.com/@thetitanmethod"><img class="icon" src="images/youtube.png" alt="youtube" /></a>
-        <a href="https://www.tiktok.com/@thetitanmethod"><img class="icon" src="images/tiktok.png" alt="tiktok" /></a>
+        <a href="https://www.facebook.com/thetitanmethod"><img class="icon" src="../images/facebook.png" alt="facebook" /></a>
+        <a href="https://www.instagram.com/thetitanmethod"><img class="icon" src="../images/instagram.png" alt="instagram" /></a>
+        <a href="https://www.youtube.com/@thetitanmethod"><img class="icon" src="../images/youtube.png" alt="youtube" /></a>
+        <a href="https://www.tiktok.com/@thetitanmethod"><img class="icon" src="../images/tiktok.png" alt="tiktok" /></a>
       </section>
       <section class="wrapper site-footer__legal">
         <p>&copy; 2025 The Titan Method. All Rights Reserved. Link to Privacy Policy and Terms of Service.</p>
