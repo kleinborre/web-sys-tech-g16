@@ -1,4 +1,4 @@
-# 🧱 The Titan Method — Website
+# 💪🏿 The Titan Method — Website
 
 *Static Site • Group 16 • HTML5 • Modern CSS • GitHub Pages*
 
