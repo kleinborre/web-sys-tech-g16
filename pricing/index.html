@@ -3,37 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Shared theme -->
   <link rel="stylesheet" href="../styles/style.css" />
   <title>Pricing • The Titan Method</title>
 </head>
 <body class="site">
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a href="../index.html" class="brand">
-        <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo" />
-        <span class="brand__name">The Titan Method</span>
-      </a>
 
-      <!-- Mobile nav toggle (no JS) -->
-      <input type="checkbox" id="nav-toggle" class="nav__toggle" aria-label="Toggle navigation" />
-      <label for="nav-toggle" class="nav__burger" aria-controls="primary-nav">
-        <span class="bars"></span>
-      </label>
+  <!-- Navbar (kept as-is per request) -->
+  <header class="site-header sticky-top bg-white">
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+      <div class="container">
+        <a class="navbar-brand d-inline-flex align-items-center brand" href="../index.html">
+          <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo me-2" />
+          <span class="brand__name">The Titan Method</span>
+        </a>
 
-      <nav class="nav" aria-label="Primary">
-        <ul id="primary-nav" class="nav__list">
-          <li class="nav__item"><a href="../index.html#about" class="nav__link">About</a></li>
-          <li class="nav__item"><a href="../index.html#program" class="nav__link">Program</a></li>
-          <li class="nav__item"><a href="../index.html#testimonials" class="nav__link">Testimonials</a></li>
-          <li class="nav__item"><a href="../pricing/" class="nav__link" aria-current="page">Pricing</a></li>
-          <li class="nav__item"><a href="../contact/" class="nav__link">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+        <button class="navbar-toggler nav__burger" type="button"
+                data-bs-toggle="collapse" data-bs-target="#primaryNav"
+                aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon bars"></span>
+        </button>
+
+        <div class="collapse navbar-collapse nav" id="primaryNav" aria-label="Primary">
+          <ul class="navbar-nav ms-auto gap-2 nav__list">
+            <li class="nav-item"><a class="nav-link nav__link" href="../index.html#about">About</a></li>
+            <li class="nav-item"><a class="nav-link nav__link" href="../index.html#program">Program</a></li>
+            <li class="nav-item"><a class="nav-link nav__link" href="../index.html#testimonials">Testimonials</a></li>
+            <li class="nav-item"><a class="nav-link nav__link active" aria-current="page" href="../pricing/">Pricing</a></li>
+            <li class="nav-item"><a class="nav-link nav__link" href="../contact/">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
-
-  <div class="page-lock" aria-hidden="true"></div>
 
   <main class="site-main">
     <div class="container site-main__inner">
@@ -43,7 +49,7 @@
         <p class="p p--primary">Pick the plan that fits your goals. Upgrade or cancel anytime.</p>
       </section>
 
-      <!-- Pricing -->
+      <!-- Pricing (restored to 3 responsive cards using the shared grid) -->
       <section class="wrapper pricing" id="plans">
         <div class="pricing__grid">
 
@@ -65,9 +71,7 @@
             </ul>
 
             <div class="pricing__cta">
-              <a class="btn btn--primary" href="#free-trial" aria-controls="free-trial" aria-haspopup="dialog">
-                FREE trial for 7 days
-              </a>
+              <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#freeTrialModal">FREE trial for 7 days</a>
             </div>
           </article>
 
@@ -92,12 +96,12 @@
             </ul>
 
             <div class="pricing__cta">
-              <a class="btn btn--secondary" href="#premium-signup" aria-controls="premium-signup" aria-haspopup="dialog">Go Premium</a>
+              <a class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#premiumModal">Go Premium</a>
             </div>
           </article>
 
           <!-- VIP -->
-          <article class="box pricing__card pricing__card--vip on-dark">
+          <article class="box pricing__card pricing__card--vip on-dark" aria-label="VIP plan">
             <header class="pricing__head">
               <h2 class="heading heading--primary">VIP</h2>
               <div class="pricing__numbers">
@@ -116,7 +120,7 @@
             </ul>
 
             <div class="pricing__cta">
-              <a class="btn btn--primary" href="#vip-signup" aria-controls="vip-signup" aria-haspopup="dialog">Join VIP</a>
+              <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vipModal">Join VIP</a>
             </div>
           </article>
 
@@ -126,160 +130,168 @@
           No contracts. Cancel anytime. Upgrade between tiers whenever you’re ready.
         </p>
       </section>
-
     </div>
   </main>
 
-  <!-- ===== MODALS ===== -->
+  <!-- ===== Bootstrap MODALS ===== -->
 
   <!-- Standard: Free Trial Form -->
-  <section id="free-trial" class="modal" role="dialog" aria-modal="true" aria-labelledby="free-trial-title">
-    <a class="modal__overlay" href="#" aria-label="Close dialog"></a>
-    <div class="modal__card">
-      <header class="modal__head">
-        <h2 id="free-trial-title" class="heading heading--primary">Claim Your 7-Day Free Trial</h2>
-        <a class="modal__close" href="#" aria-label="Close">&times;</a>
-      </header>
-
-      <form class="contact__form" action="#trial-success" method="get" novalidate>
-        <div class="form__row">
-          <label for="ft-name" class="form__label">Full Name</label>
-          <input id="ft-name" name="name" type="text" class="form__input" placeholder="John Doe" required />
+  <div class="modal fade" id="freeTrialModal" tabindex="-1" aria-labelledby="freeTrialTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal__card">
+        <div class="modal-header modal__head">
+          <h2 class="modal-title heading heading--primary" id="freeTrialTitle">Claim Your 7-Day Free Trial</h2>
+          <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="form__row">
-          <label for="ft-email" class="form__label">Email</label>
-          <input id="ft-email" name="email" type="email" class="form__input" placeholder="you@example.com" required />
-        </div>
-        <div class="form__row">
-          <label for="ft-phone" class="form__label">Phone</label>
-          <input id="ft-phone" name="phone" type="tel" class="form__input" placeholder="(555) 555-0123" />
-        </div>
-        <div class="form__row">
-          <label for="ft-address" class="form__label">Address</label>
-          <input id="ft-address" name="address" type="text" class="form__input" placeholder="123 Main St, City, State" />
-        </div>
-
-        <div class="form__actions">
-          <button type="submit" class="btn btn--primary">Subscribe Now</button>
-          <a class="btn btn--secondary" href="#">Cancel</a>
-        </div>
-      </form>
+        <form class="contact__form">
+          <div class="modal-body modal__body">
+            <div class="mb-3 form__row">
+              <label for="ft-name" class="form-label form__label">Full Name</label>
+              <input id="ft-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required />
+            </div>
+            <div class="mb-3 form__row">
+              <label for="ft-email" class="form-label form__label">Email</label>
+              <input id="ft-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required />
+            </div>
+            <div class="mb-3 form__row">
+              <label for="ft-phone" class="form-label form__label">Phone</label>
+              <input id="ft-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" />
+            </div>
+            <div class="mb-3 form__row">
+              <label for="ft-address" class="form-label form__label">Address</label>
+              <input id="ft-address" name="address" type="text" class="form-control form__input" placeholder="123 Main St, City, State" />
+            </div>
+          </div>
+          <div class="modal-footer modal__actions">
+            <button type="submit" class="btn btn-primary" data-bs-target="#trialSuccess" data-bs-toggle="modal">Subscribe Now</button>
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </section>
+  </div>
 
   <!-- Standard: Success -->
-  <section id="trial-success" class="modal" role="dialog" aria-modal="true" aria-labelledby="trial-success-title">
-    <a class="modal__overlay" href="#" aria-label="Close dialog"></a>
-    <div class="modal__card" role="document">
-      <header class="modal__head">
-        <h2 id="trial-success-title" class="heading heading--primary">Subscription Successful</h2>
-        <a class="modal__close" href="#" aria-label="Close">&times;</a>
-      </header>
-      <div class="modal__body">
-        <p class="p p--primary">Thanks! Please check your inbox for your activation email and next steps.</p>
-        <div class="modal__actions">
-          <a class="btn btn--primary" href="#">Back to Pricing</a>
+  <div class="modal fade" id="trialSuccess" tabindex="-1" aria-labelledby="trialSuccessTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal__card">
+        <div class="modal-header modal__head">
+          <h2 class="modal-title heading heading--primary" id="trialSuccessTitle">Subscription Successful</h2>
+          <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body modal__body">
+          <p class="p p--primary">Thanks! Please check your inbox for your activation email and next steps.</p>
+        </div>
+        <div class="modal-footer modal__actions">
+          <button class="btn btn-primary" data-bs-dismiss="modal">Back to Pricing</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Premium: Sign-Up -->
-  <section id="premium-signup" class="modal" role="dialog" aria-modal="true" aria-labelledby="premium-signup-title">
-    <a class="modal__overlay" href="#" aria-label="Close dialog"></a>
-    <div class="modal__card">
-      <header class="modal__head">
-        <h2 id="premium-signup-title" class="heading heading--primary">Upgrade to Premium</h2>
-        <a class="modal__close" href="#" aria-label="Close">&times;</a>
-      </header>
-
-      <form class="contact__form" action="#premium-success" method="get" novalidate>
-        <p class="p p--secondary">Unlock the full library, monthly Q&amp;A sessions, and priority support.</p>
-        <div class="form__row">
-          <label for="pm-name" class="form__label">Full Name</label>
-          <input id="pm-name" name="name" type="text" class="form__input" placeholder="John Doe" required />
+  <div class="modal fade" id="premiumModal" tabindex="-1" aria-labelledby="premiumTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal__card">
+        <div class="modal-header modal__head">
+          <h2 class="modal-title heading heading--primary" id="premiumTitle">Upgrade to Premium</h2>
+          <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="form__row">
-          <label for="pm-email" class="form__label">Email</label>
-          <input id="pm-email" name="email" type="email" class="form__input" placeholder="you@example.com" required />
-        </div>
-        <div class="form__row">
-          <label for="pm-phone" class="form__label">Phone</label>
-          <input id="pm-phone" name="phone" type="tel" class="form__input" placeholder="(555) 555-0123" />
-        </div>
-        <div class="form__actions">
-          <button type="submit" class="btn btn--secondary">Activate Premium</button>
-          <a class="btn btn--primary" href="#">Cancel</a>
-        </div>
-      </form>
+        <form class="contact__form">
+          <div class="modal-body modal__body">
+            <p class="p p--secondary">Unlock the full library, monthly Q&amp;A sessions, and priority support.</p>
+            <div class="mb-3 form__row">
+              <label for="pm-name" class="form-label form__label">Full Name</label>
+              <input id="pm-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required />
+            </div>
+            <div class="mb-3 form__row">
+              <label for="pm-email" class="form-label form__label">Email</label>
+              <input id="pm-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required />
+            </div>
+            <div class="mb-3 form__row">
+              <label for="pm-phone" class="form-label form__label">Phone</label>
+              <input id="pm-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" />
+            </div>
+          </div>
+          <div class="modal-footer modal__actions">
+            <button type="submit" class="btn btn-dark" data-bs-target="#premiumSuccess" data-bs-toggle="modal">Activate Premium</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </section>
+  </div>
 
   <!-- Premium: Success -->
-  <section id="premium-success" class="modal" role="dialog" aria-modal="true" aria-labelledby="premium-success-title">
-    <a class="modal__overlay" href="#" aria-label="Close dialog"></a>
-    <div class="modal__card" role="document">
-      <header class="modal__head">
-        <h2 id="premium-success-title" class="heading heading--primary">Premium Activated</h2>
-        <a class="modal__close" href="#" aria-label="Close">&times;</a>
-      </header>
-      <div class="modal__body">
-        <p class="p p--primary">Welcome to Premium! You’ll receive a confirmation email with access details shortly.</p>
-        <div class="modal__actions">
-          <a class="btn btn--primary" href="#">Back to Pricing</a>
+  <div class="modal fade" id="premiumSuccess" tabindex="-1" aria-labelledby="premiumSuccessTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal__card">
+        <div class="modal-header modal__head">
+          <h2 class="modal-title heading heading--primary" id="premiumSuccessTitle">Premium Activated</h2>
+          <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body modal__body">
+          <p class="p p--primary">Welcome to Premium! You’ll receive a confirmation email with access details shortly.</p>
+        </div>
+        <div class="modal-footer modal__actions">
+          <button class="btn btn-primary" data-bs-dismiss="modal">Back to Pricing</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- VIP: Sign-Up -->
-  <section id="vip-signup" class="modal" role="dialog" aria-modal="true" aria-labelledby="vip-signup-title">
-    <a class="modal__overlay" href="#" aria-label="Close dialog"></a>
-    <div class="modal__card">
-      <header class="modal__head">
-        <h2 id="vip-signup-title" class="heading heading--primary">Join VIP</h2>
-        <a class="modal__close" href="#" aria-label="Close">&times;</a>
-      </header>
-
-      <form class="contact__form" action="#vip-success" method="get" novalidate>
-        <p class="p p--secondary">Get VIP-only drops, monthly 1:1 check-ins, and fast-track support.</p>
-        <div class="form__row">
-          <label for="vp-name" class="form__label">Full Name</label>
-          <input id="vp-name" name="name" type="text" class="form__input" placeholder="John Doe" required />
+  <div class="modal fade" id="vipModal" tabindex="-1" aria-labelledby="vipTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal__card">
+        <div class="modal-header modal__head">
+          <h2 class="modal-title heading heading--primary" id="vipTitle">Join VIP</h2>
+          <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="form__row">
-          <label for="vp-email" class="form__label">Email</label>
-          <input id="vp-email" name="email" type="email" class="form__input" placeholder="you@example.com" required />
-        </div>
-        <div class="form__row">
-          <label for="vp-phone" class="form__label">Phone</label>
-          <input id="vp-phone" name="phone" type="tel" class="form__input" placeholder="(555) 555-0123" />
-        </div>
-        <div class="form__actions">
-          <button type="submit" class="btn btn--primary">Activate VIP</button>
-          <a class="btn btn--secondary" href="#">Cancel</a>
-        </div>
-      </form>
+        <form class="contact__form">
+          <div class="modal-body modal__body">
+            <p class="p p--secondary">Get VIP-only drops, monthly 1:1 check-ins, and fast-track support.</p>
+            <div class="mb-3 form__row">
+              <label for="vp-name" class="form-label form__label">Full Name</label>
+              <input id="vp-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required />
+            </div>
+            <div class="mb-3 form__row">
+              <label for="vp-email" class="form-label form__label">Email</label>
+              <input id="vp-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required />
+            </div>
+            <div class="mb-3 form__row">
+              <label for="vp-phone" class="form-label form__label">Phone</label>
+              <input id="vp-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" />
+            </div>
+          </div>
+          <div class="modal-footer modal__actions">
+            <button type="submit" class="btn btn-primary" data-bs-target="#vipSuccess" data-bs-toggle="modal">Activate VIP</button>
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </section>
+  </div>
 
   <!-- VIP: Success -->
-  <section id="vip-success" class="modal" role="dialog" aria-modal="true" aria-labelledby="vip-success-title">
-    <a class="modal__overlay" href="#" aria-label="Close dialog"></a>
-    <div class="modal__card" role="document">
-      <header class="modal__head">
-        <h2 id="vip-success-title" class="heading heading--primary">VIP Activated</h2>
-        <a class="modal__close" href="#" aria-label="Close">&times;</a>
-      </header>
-      <div class="modal__body">
-        <p class="p p--primary">You're in! Look out for your VIP welcome email with next steps and your first drop.</p>
-        <div class="modal__actions">
-          <a class="btn btn--primary" href="#">Back to Pricing</a>
+  <div class="modal fade" id="vipSuccess" tabindex="-1" aria-labelledby="vipSuccessTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal__card">
+        <div class="modal-header modal__head">
+          <h2 class="modal-title heading heading--primary" id="vipSuccessTitle">VIP Activated</h2>
+          <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body modal__body">
+          <p class="p p--primary">You're in! Look out for your VIP welcome email with next steps and your first drop.</p>
+        </div>
+        <div class="modal-footer modal__actions">
+          <button class="btn btn-primary" data-bs-dismiss="modal">Back to Pricing</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
+  <!-- Footer (same responsive centering as main index) -->
   <footer class="site-footer">
     <div class="container site-footer__inner">
       <section class="wrapper site-footer__platform">
@@ -293,5 +305,9 @@
       </section>
     </div>
   </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../scripts/script.js" defer></script>
 </body>
 </html>
