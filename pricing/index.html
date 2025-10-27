@@ -1,41 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Shared theme -->
   <link rel="stylesheet" href="../styles/style.css" />
   <title>Pricing • The Titan Method</title>
 </head>
 <body class="site">
 
-  <!-- Navbar (kept as-is per request) -->
-  <header class="site-header sticky-top bg-white">
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+  <header class="site-header sticky-top">
+    <nav class="navbar navbar-expand-lg shadow-sm">
       <div class="container">
-        <a class="navbar-brand d-inline-flex align-items-center brand" href="../index.html">
+        <a class="navbar-brand d-inline-flex align-items-center brand reveal" href="../index.html" data-reveal-delay="80">
           <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo me-2" />
           <span class="brand__name">The Titan Method</span>
         </a>
 
-        <button class="navbar-toggler nav__burger" type="button"
+        <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse" data-bs-target="#primaryNav"
                 aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon bars"></span>
+          <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse nav" id="primaryNav" aria-label="Primary">
           <ul class="navbar-nav ms-auto gap-2 nav__list">
+            <li class="nav-item"><a class="nav-link nav__link" href="../index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html#about">About</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html#program">Program</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html#testimonials">Testimonials</a></li>
             <li class="nav-item"><a class="nav-link nav__link active" aria-current="page" href="../pricing/">Pricing</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../contact/">Contact</a></li>
           </ul>
+
+          <div class="ms-lg-3 d-none d-lg-flex">
+            <button
+              type="button"
+              class="theme-switch js-theme-toggle"
+              aria-label="Toggle dark mode"
+              aria-pressed="false"
+              data-theme-icon="moon"
+            >
+              <span class="theme-switch__track" aria-hidden="true">
+                <svg class="theme-switch__icon theme-switch__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 4.5v-3M12 22.5v-3M4.5 12h-3M22.5 12h-3M5.86 5.86l-2.12-2.12M20.26 20.26l-2.12-2.12M5.86 18.14l-2.12 2.12M20.26 3.74l-2.12 2.12M12 7.5a4.5 4.5 0 1 0 0 9a4.5 4.5 0 0 0 0-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                <svg class="theme-switch__icon theme-switch__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M21 12.6A8.6 8.6 0 1 1 11.4 3a6.8 6.8 0 1 0 9.6 9.6z" fill="currentColor"/>
+                </svg>
+                <span class="theme-switch__thumb"></span>
+              </span>
+              <span class="visually-hidden">Toggle color theme</span>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
@@ -44,17 +61,40 @@
   <main class="site-main">
     <div class="container site-main__inner">
 
-      <section class="wrapper">
-        <h1 class="heading heading--title">Choose Your Membership</h1>
-        <p class="p p--primary">Pick the plan that fits your goals. Upgrade or cancel anytime.</p>
+      <!-- mobile theme toggle -->
+      <section class="wrapper d-lg-none">
+        <div class="d-flex justify-content-end">
+          <button
+            type="button"
+            class="theme-switch theme-switch--mobile js-theme-toggle"
+            aria-label="Toggle dark mode"
+            aria-pressed="false"
+            data-theme-icon="moon"
+          >
+            <span class="theme-switch__track" aria-hidden="true">
+              <svg class="theme-switch__icon theme-switch__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 4.5v-3M12 22.5v-3M4.5 12h-3M22.5 12h-3M5.86 5.86l-2.12-2.12M20.26 20.26l-2.12-2.12M5.86 18.14l-2.12 2.12M20.26 3.74l-2.12 2.12M12 7.5a4.5 4.5 0 1 0 0 9a4.5 4.5 0 0 0 0-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              <svg class="theme-switch__icon theme-switch__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 12.6A8.6 8.6 0 1 1 11.4 3a6.8 6.8 0 1 0 9.6 9.6z" fill="currentColor"/>
+              </svg>
+              <span class="theme-switch__thumb"></span>
+            </span>
+            <span class="visually-hidden">Toggle color theme</span>
+          </button>
+        </div>
       </section>
 
-      <!-- Pricing (restored to 3 responsive cards using the shared grid) -->
+      <section class="wrapper">
+        <h1 class="heading heading--title reveal" data-reveal-delay="60">Choose Your Membership</h1>
+        <p class="p p--primary reveal" data-reveal-delay="120">Pick the plan that fits your goals. Upgrade or cancel anytime.</p>
+      </section>
+
       <section class="wrapper pricing" id="plans">
         <div class="pricing__grid">
 
-          <!-- Standard — FREE TRIAL -->
-          <article class="box pricing__card" aria-label="Standard plan">
+          <!-- STANDARD -->
+          <article class="box pricing__card reveal" data-reveal-delay="80" aria-label="Standard plan">
             <header class="pricing__head">
               <h2 class="heading heading--primary">Standard</h2>
               <div class="pricing__numbers">
@@ -62,80 +102,100 @@
                 <span class="pricing__trial" role="status" aria-label="Free trial for 7 days">FREE trial for 7 days</span>
               </div>
             </header>
-
             <ul class="pricing__list">
               <li>Access to standard workout videos</li>
               <li>Weekly training tips</li>
               <li>Community forum access</li>
               <li>Email support (48–72h)</li>
             </ul>
-
             <div class="pricing__cta">
-              <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#freeTrialModal">FREE trial for 7 days</a>
+              <button
+                class="btn btn-primary js-validate-submit"
+                type="button"
+                data-form="freeTrialForm"
+                data-success-modal="#trialSuccess"
+                data-plan="Standard"
+              >
+                FREE trial for 7 days
+              </button>
             </div>
           </article>
 
-          <!-- Premium -->
-          <article class="box pricing__card pricing__card--popular" aria-label="Most popular plan">
+          <!-- PREMIUM -->
+          <article class="box pricing__card pricing__card--popular reveal" data-reveal-delay="120" aria-label="Most popular plan">
             <div class="pricing__badge" aria-hidden="true">Most Popular</div>
             <header class="pricing__head">
               <h2 class="heading heading--primary">Premium</h2>
               <div class="pricing__numbers">
-                <span class="pricing__price-current">
-                  $24.99<span class="pricing__price-period">/mo</span>
-                </span>
+                <span class="pricing__price-current">$24.99<span class="pricing__price-period">/mo</span></span>
                 <span class="pricing__price-old">$34.99</span>
               </div>
             </header>
-
             <ul class="pricing__list">
               <li><b>Everything in Standard</b></li>
               <li>Premium video library &amp; programs</li>
               <li>Monthly group Q&amp;A sessions</li>
               <li>Priority support (24–48h)</li>
             </ul>
-
             <div class="pricing__cta">
-              <a class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#premiumModal">Go Premium</a>
+              <button
+                class="btn btn-dark js-validate-submit"
+                type="button"
+                data-form="premiumForm"
+                data-success-modal="#premiumSuccess"
+                data-plan="Premium"
+              >
+                Go Premium
+              </button>
             </div>
           </article>
 
           <!-- VIP -->
-          <article class="box pricing__card pricing__card--vip on-dark" aria-label="VIP plan">
+          <article class="box pricing__card pricing__card--vip on-dark reveal" data-reveal-delay="160" aria-label="VIP plan">
             <header class="pricing__head">
               <h2 class="heading heading--primary">VIP</h2>
               <div class="pricing__numbers">
-                <span class="pricing__price-current">
-                  $59.00<span class="pricing__price-period">/mo</span>
-                </span>
+                <span class="pricing__price-current">$59.00<span class="pricing__price-period">/mo</span></span>
                 <span class="pricing__price-old">$79.00</span>
               </div>
             </header>
-
             <ul class="pricing__list">
               <li><b>Everything in Premium</b></li>
               <li>Exclusive VIP-only workouts &amp; drops</li>
               <li>Monthly 1:1 check-in (15–20 min)</li>
               <li>Fast-track support (&lt; 12h)</li>
             </ul>
-
             <div class="pricing__cta">
-              <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vipModal">Join VIP</a>
+              <button
+                class="btn btn-primary js-validate-submit"
+                type="button"
+                data-form="vipForm"
+                data-success-modal="#vipSuccess"
+                data-plan="VIP"
+              >
+                Join VIP
+              </button>
             </div>
           </article>
 
         </div>
 
-        <p class="p p--secondary pricing__note">
+        <p class="p p--secondary pricing__note reveal" data-reveal-delay="200">
           No contracts. Cancel anytime. Upgrade between tiers whenever you’re ready.
         </p>
       </section>
     </div>
   </main>
 
-  <!-- ===== Bootstrap MODALS ===== -->
+  <button id="scrollSwap" class="scroll-swap" type="button" aria-label="Scroll" hidden>
+    <svg class="scroll-swap__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
 
-  <!-- Standard: Free Trial Form -->
+  <!-- ===================== MODALS ===================== -->
+
+  <!-- Standard Tier Modal -->
   <div class="modal fade" id="freeTrialModal" tabindex="-1" aria-labelledby="freeTrialTitle" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content modal__card">
@@ -143,27 +203,39 @@
           <h2 class="modal-title heading heading--primary" id="freeTrialTitle">Claim Your 7-Day Free Trial</h2>
           <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form class="contact__form">
+        <form id="freeTrialForm" class="contact__form js-validate-form" novalidate data-plan="Standard">
           <div class="modal-body modal__body">
+
+            <div class="alert alert-danger d-none js-error-msg" role="alert">
+              Please fill in all required fields.
+            </div>
+            <div class="alert alert-success d-none js-success-msg" role="alert">
+              Subscribed! Check your email for activation.
+            </div>
+
             <div class="mb-3 form__row">
-              <label for="ft-name" class="form-label form__label">Full Name</label>
+              <label for="ft-name" class="form-label form__label">Full Name <span aria-hidden="true">*</span></label>
               <input id="ft-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required />
             </div>
+
             <div class="mb-3 form__row">
-              <label for="ft-email" class="form-label form__label">Email</label>
+              <label for="ft-email" class="form-label form__label">Email <span aria-hidden="true">*</span></label>
               <input id="ft-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required />
             </div>
+
             <div class="mb-3 form__row">
               <label for="ft-phone" class="form-label form__label">Phone</label>
               <input id="ft-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" />
             </div>
+
             <div class="mb-3 form__row">
               <label for="ft-address" class="form-label form__label">Address</label>
               <input id="ft-address" name="address" type="text" class="form-control form__input" placeholder="123 Main St, City, State" />
             </div>
           </div>
+
           <div class="modal-footer modal__actions">
-            <button type="submit" class="btn btn-primary" data-bs-target="#trialSuccess" data-bs-toggle="modal">Subscribe Now</button>
+            <button type="submit" class="btn btn-primary">Subscribe Now</button>
             <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
           </div>
         </form>
@@ -171,7 +243,7 @@
     </div>
   </div>
 
-  <!-- Standard: Success -->
+  <!-- Trial success -->
   <div class="modal fade" id="trialSuccess" tabindex="-1" aria-labelledby="trialSuccessTitle" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content modal__card">
@@ -183,13 +255,13 @@
           <p class="p p--primary">Thanks! Please check your inbox for your activation email and next steps.</p>
         </div>
         <div class="modal-footer modal__actions">
-          <button class="btn btn-primary" data-bs-dismiss="modal">Back to Pricing</button>
+          <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Back to Pricing</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Premium: Sign-Up -->
+  <!-- Premium Tier Modal -->
   <div class="modal fade" id="premiumModal" tabindex="-1" aria-labelledby="premiumTitle" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content modal__card">
@@ -197,24 +269,41 @@
           <h2 class="modal-title heading heading--primary" id="premiumTitle">Upgrade to Premium</h2>
           <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form class="contact__form">
+
+        <form id="premiumForm" class="contact__form js-validate-form" novalidate data-plan="Premium">
           <div class="modal-body modal__body">
             <p class="p p--secondary">Unlock the full library, monthly Q&amp;A sessions, and priority support.</p>
+
+            <div class="alert alert-danger d-none js-error-msg" role="alert">
+              Please fill in all required fields.
+            </div>
+            <div class="alert alert-success d-none js-success-msg" role="alert">
+              Premium activated! Check your email for access details.
+            </div>
+
             <div class="mb-3 form__row">
-              <label for="pm-name" class="form-label form__label">Full Name</label>
+              <label for="pm-name" class="form-label form__label">Full Name <span aria-hidden="true">*</span></label>
               <input id="pm-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required />
             </div>
+
             <div class="mb-3 form__row">
-              <label for="pm-email" class="form-label form__label">Email</label>
+              <label for="pm-email" class="form-label form__label">Email <span aria-hidden="true">*</span></label>
               <input id="pm-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required />
             </div>
+
             <div class="mb-3 form__row">
               <label for="pm-phone" class="form-label form__label">Phone</label>
               <input id="pm-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" />
             </div>
+
+            <div class="mb-3 form__row">
+              <label for="pm-address" class="form-label form__label">Address</label>
+              <input id="pm-address" name="address" type="text" class="form-control form__input" placeholder="123 Main St, City, State" />
+            </div>
           </div>
+
           <div class="modal-footer modal__actions">
-            <button type="submit" class="btn btn-dark" data-bs-target="#premiumSuccess" data-bs-toggle="modal">Activate Premium</button>
+            <button type="submit" class="btn btn-dark">Activate Premium</button>
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
           </div>
         </form>
@@ -222,7 +311,7 @@
     </div>
   </div>
 
-  <!-- Premium: Success -->
+  <!-- Premium success -->
   <div class="modal fade" id="premiumSuccess" tabindex="-1" aria-labelledby="premiumSuccessTitle" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content modal__card">
@@ -234,13 +323,13 @@
           <p class="p p--primary">Welcome to Premium! You’ll receive a confirmation email with access details shortly.</p>
         </div>
         <div class="modal-footer modal__actions">
-          <button class="btn btn-primary" data-bs-dismiss="modal">Back to Pricing</button>
+          <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Back to Pricing</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- VIP: Sign-Up -->
+  <!-- VIP Tier Modal -->
   <div class="modal fade" id="vipModal" tabindex="-1" aria-labelledby="vipTitle" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content modal__card">
@@ -248,24 +337,41 @@
           <h2 class="modal-title heading heading--primary" id="vipTitle">Join VIP</h2>
           <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form class="contact__form">
+
+        <form id="vipForm" class="contact__form js-validate-form" novalidate data-plan="VIP">
           <div class="modal-body modal__body">
             <p class="p p--secondary">Get VIP-only drops, monthly 1:1 check-ins, and fast-track support.</p>
+
+            <div class="alert alert-danger d-none js-error-msg" role="alert">
+              Please fill in all required fields.
+            </div>
+            <div class="alert alert-success d-none js-success-msg" role="alert">
+              VIP activated! Check your inbox for the welcome email.
+            </div>
+
             <div class="mb-3 form__row">
-              <label for="vp-name" class="form-label form__label">Full Name</label>
+              <label for="vp-name" class="form-label form__label">Full Name <span aria-hidden="true">*</span></label>
               <input id="vp-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required />
             </div>
+
             <div class="mb-3 form__row">
-              <label for="vp-email" class="form-label form__label">Email</label>
+              <label for="vp-email" class="form-label form__label">Email <span aria-hidden="true">*</span></label>
               <input id="vp-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required />
             </div>
+
             <div class="mb-3 form__row">
               <label for="vp-phone" class="form-label form__label">Phone</label>
               <input id="vp-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" />
             </div>
+
+            <div class="mb-3 form__row">
+              <label for="vp-address" class="form-label form__label">Address</label>
+              <input id="vp-address" name="address" type="text" class="form-control form__input" placeholder="123 Main St, City, State" />
+            </div>
           </div>
+
           <div class="modal-footer modal__actions">
-            <button type="submit" class="btn btn-primary" data-bs-target="#vipSuccess" data-bs-toggle="modal">Activate VIP</button>
+            <button type="submit" class="btn btn-primary">Activate VIP</button>
             <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
           </div>
         </form>
@@ -273,7 +379,7 @@
     </div>
   </div>
 
-  <!-- VIP: Success -->
+  <!-- VIP success -->
   <div class="modal fade" id="vipSuccess" tabindex="-1" aria-labelledby="vipSuccessTitle" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content modal__card">
@@ -285,28 +391,59 @@
           <p class="p p--primary">You're in! Look out for your VIP welcome email with next steps and your first drop.</p>
         </div>
         <div class="modal-footer modal__actions">
-          <button class="btn btn-primary" data-bs-dismiss="modal">Back to Pricing</button>
+          <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Back to Pricing</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer (same responsive centering as main index) -->
   <footer class="site-footer">
     <div class="container site-footer__inner">
       <section class="wrapper site-footer__platform">
-        <a href="https://www.facebook.com/thetitanmethod"><img class="icon" src="../images/facebook.png" alt="facebook" /></a>
-        <a href="https://www.instagram.com/thetitanmethod"><img class="icon" src="../images/instagram.png" alt="instagram" /></a>
-        <a href="https://www.youtube.com/@thetitanmethod"><img class="icon" src="../images/youtube.png" alt="youtube" /></a>
-        <a href="https://www.tiktok.com/@thetitanmethod"><img class="icon" src="../images/tiktok.png" alt="tiktok" /></a>
+        <a
+          href="https://www.facebook.com/thetitanmethod"
+          class="reveal"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="The Titan Method on Facebook"
+        >
+          <img class="icon" src="../images/facebook.png" alt="facebook" />
+        </a>
+        <a
+          href="https://www.instagram.com/thetitanmethod"
+          class="reveal"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="The Titan Method on Instagram"
+        >
+          <img class="icon" src="../images/instagram.png" alt="instagram" />
+        </a>
+        <a
+          href="https://www.youtube.com/@thetitanmethod"
+          class="reveal"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="The Titan Method on YouTube"
+        >
+          <img class="icon" src="../images/youtube.png" alt="youtube" />
+        </a>
+        <a
+          href="https://www.tiktok.com/@thetitanmethod"
+          class="reveal"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="The Titan Method on TikTok"
+        >
+          <img class="icon" src="../images/tiktok.png" alt="tiktok" />
+        </a>
       </section>
+
       <section class="wrapper site-footer__legal">
         <p>&copy; 2025 The Titan Method. All Rights Reserved. Link to Privacy Policy and Terms of Service.</p>
       </section>
     </div>
   </footer>
 
-  <!-- Bootstrap 5 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../scripts/script.js" defer></script>
 </body>

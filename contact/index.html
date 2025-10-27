@@ -1,40 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
   <link rel="stylesheet" href="../styles/style.css" />
   <title>Contact • The Titan Method</title>
 </head>
 <body class="site">
 
-  <!-- Navbar -->
-  <header class="site-header sticky-top bg-white">
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+  <header class="site-header sticky-top">
+    <nav class="navbar navbar-expand-lg shadow-sm">
       <div class="container">
-        <a class="navbar-brand d-inline-flex align-items-center brand" href="../index.html">
+        <a class="navbar-brand d-inline-flex align-items-center brand reveal" href="../index.html" data-reveal-delay="80">
           <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo me-2" />
           <span class="brand__name">The Titan Method</span>
         </a>
 
-        <button class="navbar-toggler nav__burger" type="button"
+        <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse" data-bs-target="#primaryNav"
                 aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon bars"></span>
+          <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse nav" id="primaryNav" aria-label="Primary">
           <ul class="navbar-nav ms-auto gap-2 nav__list">
+            <li class="nav-item"><a class="nav-link nav__link" href="../index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html#about">About</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html#program">Program</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html#testimonials">Testimonials</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../pricing/">Pricing</a></li>
             <li class="nav-item"><a class="nav-link nav__link active" aria-current="page" href="../contact/">Contact</a></li>
           </ul>
+
+          <div class="ms-lg-3 d-none d-lg-flex">
+            <button
+              type="button"
+              class="theme-switch js-theme-toggle"
+              aria-label="Toggle dark mode"
+              aria-pressed="false"
+              data-theme-icon="moon"
+            >
+              <span class="theme-switch__track" aria-hidden="true">
+                <svg class="theme-switch__icon theme-switch__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 4.5v-3M12 22.5v-3M4.5 12h-3M22.5 12h-3M5.86 5.86l-2.12-2.12M20.26 20.26l-2.12-2.12M5.86 18.14l-2.12 2.12M20.26 3.74l-2.12 2.12M12 7.5a4.5 4.5 0 1 0 0 9a4.5 4.5 0 0 0 0-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                <svg class="theme-switch__icon theme-switch__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M21 12.6A8.6 8.6 0 1 1 11.4 3a6.8 6.8 0 1 0 9.6 9.6z" fill="currentColor"/>
+                </svg>
+                <span class="theme-switch__thumb"></span>
+              </span>
+              <span class="visually-hidden">Toggle color theme</span>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
@@ -43,19 +61,45 @@
   <main class="site-main">
     <div class="container site-main__inner">
 
-      <section class="wrapper">
-        <h1 class="heading heading--title">Contact Us</h1>
-        <p class="p p--primary">Questions, collabs, or coaching inquiries? Send us a message—we’d love to hear from you.</p>
+      <!-- mobile theme toggle -->
+      <section class="wrapper d-lg-none">
+        <div class="d-flex justify-content-end">
+          <button
+            type="button"
+            class="theme-switch theme-switch--mobile js-theme-toggle"
+            aria-label="Toggle dark mode"
+            aria-pressed="false"
+            data-theme-icon="moon"
+          >
+            <span class="theme-switch__track" aria-hidden="true">
+              <svg class="theme-switch__icon theme-switch__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 4.5v-3M12 22.5v-3M4.5 12h-3M22.5 12h-3M5.86 5.86l-2.12-2.12M20.26 20.26l-2.12-2.12M5.86 18.14l-2.12 2.12M20.26 3.74l-2.12 2.12M12 7.5a4.5 4.5 0 1 0 0 9a4.5 4.5 0 0 0 0-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              <svg class="theme-switch__icon theme-switch__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 12.6A8.6 8.6 0 1 1 11.4 3a6.8 6.8 0 1 0 9.6 9.6z" fill="currentColor"/>
+              </svg>
+              <span class="theme-switch__thumb"></span>
+            </span>
+            <span class="visually-hidden">Toggle color theme</span>
+          </button>
+        </div>
       </section>
 
-      <!-- Map + Address -->
+      <section class="wrapper">
+        <h1 class="heading heading--title reveal" data-reveal-delay="60">Contact Us</h1>
+        <p class="p p--primary reveal" data-reveal-delay="120">Questions, collabs, or coaching inquiries? Send us a message—we’d love to hear from you.</p>
+      </section>
+
       <section class="wrapper contact contact--map">
-        <div class="contact__map-card box">
+        <div class="contact__map-card box reveal" data-reveal-delay="80">
           <div class="map-embed ratio ratio-16x9" role="region" aria-label="Map showing our address">
             <iframe
               src="https://www.google.com/maps?q=600+Congress+Ave,+Austin,+TX+78701&output=embed"
-              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
-              title="Google Map of 600 Congress Ave, Austin, TX 78701"></iframe>
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+              title="Google Map of 600 Congress Ave, Austin, TX 78701"
+            ></iframe>
           </div>
 
           <address class="contact__address p p--primary mt-3">
@@ -69,39 +113,77 @@
         </div>
       </section>
 
-      <!-- Contact form -->
       <section class="wrapper contact contact--form" id="contact">
-        <div class="box contact__form-card">
+        <div class="box contact__form-card reveal" data-reveal-delay="140">
           <h2 class="heading heading--primary">Send us a message</h2>
           <p class="p p--secondary">We’ll reply via the email you provide.</p>
 
-          <form class="contact__form" action="#" method="post" novalidate data-bs-toggle="modal" data-bs-target="#contactSuccess">
-            <div class="mb-3 form__row">
-              <label for="name" class="form-label form__label">Your Name</label>
-              <input id="name" name="name" type="text" class="form-control form__input"
-                     placeholder="John Doe" autocomplete="name" required />
+          <form id="contactForm" class="contact__form js-validate-form" novalidate data-plan="Contact Inquiry">
+            <div class="alert alert-danger d-none js-error-msg" role="alert">
+              Please fill in all required fields.
+            </div>
+            <div class="alert alert-success d-none js-success-msg" role="alert">
+              Message received! Check your email for confirmation.
             </div>
 
             <div class="mb-3 form__row">
-              <label for="email" class="form-label form__label">Your Email</label>
-              <input id="email" name="email" type="email" class="form-control form__input"
-                     placeholder="you@example.com" autocomplete="email" required />
+              <label for="name" class="form-label form__label">Your Name <span aria-hidden="true">*</span></label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                class="form-control form__input"
+                placeholder="John Doe"
+                autocomplete="name"
+                required
+              />
             </div>
 
             <div class="mb-3 form__row">
-              <label for="subject" class="form-label form__label">Subject</label>
-              <input id="subject" name="subject" type="text" class="form-control form__input"
-                     placeholder="Coaching Inquiry" required />
+              <label for="email" class="form-label form__label">Your Email <span aria-hidden="true">*</span></label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                class="form-control form__input"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
             </div>
 
             <div class="mb-3 form__row">
-              <label for="message" class="form-label form__label">Message</label>
-              <textarea id="message" name="message" class="form-control form__textarea" rows="6"
-                        placeholder="Write your message here..." required></textarea>
+              <label for="subject" class="form-label form__label">Subject <span aria-hidden="true">*</span></label>
+              <input
+                id="subject"
+                name="subject"
+                type="text"
+                class="form-control form__input"
+                placeholder="Coaching Inquiry"
+                required
+              />
+            </div>
+
+            <div class="mb-3 form__row">
+              <label for="message" class="form-label form__label">Message <span aria-hidden="true">*</span></label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-control form__textarea"
+                rows="6"
+                placeholder="Write your message here..."
+                required
+              ></textarea>
             </div>
 
             <div class="d-flex flex-wrap gap-2 form__actions">
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <button
+                type="submit"
+                class="btn btn-primary js-validate-submit"
+                data-success-modal="#contactSuccess"
+              >
+                Send Message
+              </button>
             </div>
           </form>
         </div>
@@ -110,7 +192,12 @@
     </div>
   </main>
 
-  <!-- Modal: Contact Success (Bootstrap) -->
+  <button id="scrollSwap" class="scroll-swap" type="button" aria-label="Scroll" hidden>
+    <svg class="scroll-swap__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
   <div class="modal fade" id="contactSuccess" tabindex="-1" aria-labelledby="contactSuccessTitle" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content modal__card">
@@ -125,20 +212,51 @@
           </p>
         </div>
         <div class="modal-footer modal__actions">
-          <button class="btn btn-primary" data-bs-dismiss="modal">Back to Contact</button>
+          <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Back to Contact</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer (same responsive centering as main index & pricing) -->
   <footer class="site-footer">
     <div class="container site-footer__inner">
       <section class="wrapper site-footer__platform">
-        <a href="https://www.facebook.com/thetitanmethod"><img class="icon" src="../images/facebook.png" alt="facebook" /></a>
-        <a href="https://www.instagram.com/thetitanmethod"><img class="icon" src="../images/instagram.png" alt="instagram" /></a>
-        <a href="https://www.youtube.com/@thetitanmethod"><img class="icon" src="../images/youtube.png" alt="youtube" /></a>
-        <a href="https://www.tiktok.com/@thetitanmethod"><img class="icon" src="../images/tiktok.png" alt="tiktok" /></a>
+        <a
+          href="https://www.facebook.com/thetitanmethod"
+          class="reveal"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="The Titan Method on Facebook"
+        >
+          <img class="icon" src="../images/facebook.png" alt="facebook" />
+        </a>
+        <a
+          href="https://www.instagram.com/thetitanmethod"
+          class="reveal"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="The Titan Method on Instagram"
+        >
+          <img class="icon" src="../images/instagram.png" alt="instagram" />
+        </a>
+        <a
+          href="https://www.youtube.com/@thetitanmethod"
+          class="reveal"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="The Titan Method on YouTube"
+        >
+          <img class="icon" src="../images/youtube.png" alt="youtube" />
+        </a>
+        <a
+          href="https://www.tiktok.com/@thetitanmethod"
+          class="reveal"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="The Titan Method on TikTok"
+        >
+          <img class="icon" src="../images/tiktok.png" alt="tiktok" />
+        </a>
       </section>
       <section class="wrapper site-footer__legal">
         <p>&copy; 2025 The Titan Method. All Rights Reserved. Link to Privacy Policy and Terms of Service.</p>
@@ -146,7 +264,6 @@
     </div>
   </footer>
 
-  <!-- Bootstrap 5 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../scripts/script.js" defer></script>
 </body>
