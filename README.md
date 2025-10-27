@@ -1,4 +1,3 @@
-````markdown
 # 💪🏿 The Titan Method — Website
 
 *Static Site • Group 16 • HTML5 • Modern CSS • Bootstrap 5 • GitHub Pages*
