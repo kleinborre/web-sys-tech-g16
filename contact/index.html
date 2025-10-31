@@ -8,12 +8,14 @@
   <title>Contact • The Titan Method</title>
 </head>
 <body class="site">
-
   <header class="site-header sticky-top">
     <nav class="navbar navbar-expand-lg shadow-sm">
       <div class="container">
         <a class="navbar-brand d-inline-flex align-items-center brand reveal" href="../index.html" data-reveal-delay="80">
-          <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo me-2" />
+          <picture class="me-2">
+            <source type="image/webp" srcset="../images/logo.webp" />
+            <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo" />
+          </picture>
           <span class="brand__name">The Titan Method</span>
         </a>
 
@@ -60,8 +62,6 @@
 
   <main class="site-main">
     <div class="container site-main__inner">
-
-      <!-- mobile theme toggle -->
       <section class="wrapper d-lg-none">
         <div class="d-flex justify-content-end">
           <button
@@ -118,15 +118,7 @@
           <h2 class="heading heading--primary">Send us a message</h2>
           <p class="p p--secondary">We’ll reply via the email you provide.</p>
 
-          <!-- Added hooks for localStorage persistence via script.js -->
-          <form
-            id="contactForm"
-            class="contact__form js-validate-form js-demo-form"
-            novalidate
-            data-plan="Contact Inquiry"
-            data-storage-collection="titan_leads"
-            data-storage-type="contact"
-          >
+          <form id="contactForm" class="contact__form js-validate-form js-demo-form" novalidate>
             <div class="alert alert-danger d-none js-error-msg" role="alert">
               Please fill in all required fields.
             </div>
@@ -136,71 +128,32 @@
 
             <div class="mb-3 form__row">
               <label for="name" class="form-label form__label">Your Name <span aria-hidden="true">*</span></label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                class="form-control form__input"
-                placeholder="John Doe"
-                autocomplete="name"
-                required
-                data-storage-field="name"
-              />
+              <input id="name" name="name" type="text" class="form-control form__input" placeholder="John Doe" autocomplete="name" required />
             </div>
 
             <div class="mb-3 form__row">
               <label for="email" class="form-label form__label">Your Email <span aria-hidden="true">*</span></label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                class="form-control form__input"
-                placeholder="you@example.com"
-                autocomplete="email"
-                required
-                data-storage-field="email"
-              />
+              <input id="email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" autocomplete="email" required />
             </div>
 
             <div class="mb-3 form__row">
               <label for="subject" class="form-label form__label">Subject <span aria-hidden="true">*</span></label>
-              <input
-                id="subject"
-                name="subject"
-                type="text"
-                class="form-control form__input"
-                placeholder="Coaching Inquiry"
-                required
-                data-storage-field="subject"
-              />
+              <input id="subject" name="subject" type="text" class="form-control form__input" placeholder="Coaching Inquiry" required />
             </div>
 
             <div class="mb-3 form__row">
               <label for="message" class="form-label form__label">Message <span aria-hidden="true">*</span></label>
-              <textarea
-                id="message"
-                name="message"
-                class="form-control form__textarea"
-                rows="6"
-                placeholder="Write your message here..."
-                required
-                data-storage-field="message"
-              ></textarea>
+              <textarea id="message" name="message" class="form-control form__textarea" rows="6" placeholder="Write your message here..." required></textarea>
             </div>
 
             <div class="d-flex flex-wrap gap-2 form__actions">
-              <button
-                type="submit"
-                class="btn btn-primary js-validate-submit"
-                data-success-modal="#contactSuccess"
-              >
+              <button type="submit" class="btn btn-primary js-validate-submit" data-success-modal="#contactSuccess">
                 Send Message
               </button>
             </div>
           </form>
         </div>
       </section>
-
     </div>
   </main>
 
@@ -211,7 +164,7 @@
   </button>
 
   <div class="modal fade" id="contactSuccess" tabindex="-1" aria-labelledby="contactSuccessTitle" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal__card">
         <div class="modal-header modal__head">
           <h2 id="contactSuccessTitle" class="modal-title heading heading--primary">Message Sent</h2>
@@ -233,41 +186,29 @@
   <footer class="site-footer">
     <div class="container site-footer__inner">
       <section class="wrapper site-footer__platform">
-        <a
-          href="https://www.facebook.com/thetitanmethod"
-          class="reveal"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="The Titan Method on Facebook"
-        >
-          <img class="icon" src="../images/facebook.png" alt="facebook" />
+        <a href="https://www.facebook.com/thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on Facebook">
+          <picture>
+            <source type="image/webp" srcset="../images/facebook.webp" />
+            <img class="icon" src="../images/facebook.png" alt="facebook" />
+          </picture>
         </a>
-        <a
-          href="https://www.instagram.com/thetitanmethod"
-          class="reveal"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="The Titan Method on Instagram"
-        >
-          <img class="icon" src="../images/instagram.png" alt="instagram" />
+        <a href="https://www.instagram.com/thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on Instagram">
+          <picture>
+            <source type="image/webp" srcset="../images/instagram.webp" />
+            <img class="icon" src="../images/instagram.png" alt="instagram" />
+          </picture>
         </a>
-        <a
-          href="https://www.youtube.com/@thetitanmethod"
-          class="reveal"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="The Titan Method on YouTube"
-        >
-          <img class="icon" src="../images/youtube.png" alt="youtube" />
+        <a href="https://www.youtube.com/@thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on YouTube">
+          <picture>
+            <source type="image/webp" srcset="../images/youtube.webp" />
+            <img class="icon" src="../images/youtube.png" alt="youtube" />
+          </picture>
         </a>
-        <a
-          href="https://www.tiktok.com/@thetitanmethod"
-          class="reveal"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="The Titan Method on TikTok"
-        >
-          <img class="icon" src="../images/tiktok.png" alt="tiktok" />
+        <a href="https://www.tiktok.com/@thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on TikTok">
+          <picture>
+            <source type="image/webp" srcset="../images/tiktok.webp" />
+            <img class="icon" src="../images/tiktok.png" alt="tiktok" />
+          </picture>
         </a>
       </section>
       <section class="wrapper site-footer__legal">

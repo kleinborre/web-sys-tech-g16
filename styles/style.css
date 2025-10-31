@@ -76,7 +76,6 @@ html[data-theme="dark"]{
 }
 
 /* ================= Utilities ================= */
-/* Vertical stack that centers children and text */
 .stack-center{
   display:flex;
   flex-direction:column;
@@ -84,16 +83,10 @@ html[data-theme="dark"]{
   text-align:center;
   gap:var(--space-3);
 }
-/* Shared measure so heading + list + button align to same axis */
 .measure{ width:min(100%,560px); margin-inline:auto }
-/* Optional tighter measure if needed elsewhere */
 .measure--tight{ width:min(100%,520px); margin-inline:auto }
-
-/* Normalize lists inside focused stacks */
 .stack-center ul{ list-style:none; margin:0; padding:0 }
 .stack-center li{ margin:0 }
-
-/* Ensure buttons in stacks are actually centered */
 .stack-center .btn{ align-self:center; display:inline-flex }
 
 /* Base / reset */
@@ -239,12 +232,23 @@ html[data-theme="dark"] .theme-switch__icon--sun{opacity:1}
   color:#fff; background-color:#000; border-radius:12px; overflow:hidden;
   padding-block:var(--space-6); padding-inline:var(--space-4); margin-inline:auto;
 }
+
+/* WebP first, JPEG fallback for hero background */
 .headline::after{
   content:""; position:absolute; inset:0;
-  background-image:url("../images/background.jpg"); background-size:cover; background-repeat:no-repeat; background-position:50% 40%;
+  background-repeat:no-repeat; background-position:50% 40%; background-size:cover;
+  background-image: image-set(
+    url("../images/background.webp") type("image/webp") 1x,
+    url("../images/background.jpg") type("image/jpeg") 1x
+  );
+  background-image: -webkit-image-set(
+    url("../images/background.webp") type("image/webp") 1x,
+    url("../images/background.jpg") type("image/jpeg") 1x
+  );
   opacity:0; transition:opacity .8s ease; z-index:0;
 }
 .headline.headline--bg-ready::after{opacity:1}
+
 .headline::before{
   content:""; position:absolute; inset:0;
   background:linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,.45) 40%, rgba(0,0,0,.28) 100%);
@@ -274,18 +278,19 @@ html[data-theme="dark"] .theme-switch__icon--sun{opacity:1}
 .video--primary{ width:100%; max-width:760px; aspect-ratio:16/9; border-radius:12px; box-shadow:var(--shadow-lg) }
 .p.p--primary{font-size:var(--step-0)}
 
-/* About CTA panel */
 .about__cta{
   display:flex; flex-direction:column; gap:var(--space-3);
   background:var(--color-1); color:#fff; padding:var(--space-4); border-radius:12px;
 }
-html[data-theme="dark"] .about__cta{ background:linear-gradient(135deg,#0f1624 0%,#0b0f19 100%) }
+.about__cta.stack-center{ align-items:center; text-align:center }
+.about__cta .measure{ width:min(100%, 640px); margin-inline:auto }
 .about__list{ display:flex; flex-direction:column; gap:.55rem; list-style:none }
 .about__list li{ line-height:1.6 }
 .about__main,.about__cta{ min-width:0; width:100% }
 @media(min-width:900px){
   .about__main,.about__cta{ flex:1 1 0 }
 }
+html[data-theme="dark"] .about__cta{ background:linear-gradient(135deg,#0f1624 0%,#0b0f19 100%) }
 
 /* ================= PROGRAM ================= */
 .program{ display:flex; flex-direction:column; gap:var(--space-4) }
@@ -348,6 +353,11 @@ html[data-theme="dark"] .testimonials-cta__box{ background:linear-gradient(135de
 .testimonials-cta__card--text{ display:flex; flex-direction:column; gap:var(--space-2); background:transparent; border:0; box-shadow:none; align-items:center }
 .testimonials-cta__card--text p{ margin:0; align-self:stretch; width:min(100%,560px); text-align:left }
 .testimonials-cta__list{ list-style:none; display:flex; flex-direction:column; gap:.55rem; margin:0; padding:0; align-self:stretch; width:min(100%,560px); text-align:left }
+
+/* Force the "Activate My Free Trial Now" button to stay centered at all sizes */
+.testimonials-cta__box .measure > .btn{
+  align-self: center !important;
+}
 
 /* ================= CTA GALLERY SECTION ================= */
 .cta{ display:flex; flex-direction:column; gap:var(--space-4) }
@@ -474,9 +484,30 @@ html[data-theme="dark"] .modal-content{ background:var(--surface); color:var(--t
 .pricing__list{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-top:.25rem}
 .pricing__list li{ position:relative; padding-left:1.5rem; line-height:1.5 }
 .pricing__list li::before{ content:"✓"; position:absolute; left:0; top:0.05rem; font-weight:800; color:var(--color-5) }
-.pricing__cta{margin-top:auto;display:flex;align-items:center}
-.pricing__cta .btn{width:100%}
-@media(min-width:641px){.pricing__cta .btn{width:auto}}
+
+/* ===== RESTORED BUTTON BEHAVIOR (goal image) ===== */
+.pricing__cta{
+  margin-top:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.pricing__cta .btn{
+  /* Full-width on mobile like your goal screenshot */
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+@media(min-width:641px){
+  .pricing__cta .btn{
+    /* Shrink to content on larger screens */
+    width:auto;
+    display:inline-flex;
+  }
+}
+
 .pricing__note{text-align:center;opacity:.9}
 .pricing__badge{
   position:absolute; top:14px; right:14px; background:var(--color-5); color:#fff;
@@ -494,12 +525,55 @@ html[data-theme="dark"] .modal-content{ background:var(--surface); color:var(--t
 .scroll-swap__icon{width:22px;height:22px;transition:transform .18s ease}
 
 /* ================= REVEAL ANIMATIONS ================= */
-.reveal{ opacity:0; transform:translateY(16px); will-change:opacity, transform; transition:opacity .8s ease, transform .8s ease }
-.is-visible{ opacity:1 !important; transform:translateY(0) !important }
+.reveal{
+  opacity:0;
+  transform:translateY(16px);
+  will-change:opacity, transform;
+}
+@keyframes fade-up{
+  from{ opacity:0; transform:translateY(16px) }
+  to{ opacity:1; transform:translateY(0) }
+}
+.is-visible{
+  animation: fade-up .8s ease both;
+  animation-delay: var(--reveal-delay, 0s);
+}
+.stagger > *{ opacity:0; transform:translateY(16px) }
+.stagger.is-visible > *{ animation: fade-up .8s ease both; }
+.stagger.is-visible > *:nth-child(1){ animation-delay:.06s }
+.stagger.is-visible > *:nth-child(2){ animation-delay:.12s }
+.stagger.is-visible > *:nth-child(3){ animation-delay:.18s }
+.stagger.is-visible > *:nth-child(4){ animation-delay:.24s }
+.stagger.is-visible > *:nth-child(5){ animation-delay:.30s }
+.stagger.is-visible > *:nth-child(6){ animation-delay:.36s }
+.stagger.is-visible > *:nth-child(7){ animation-delay:.42s }
+.stagger.is-visible > *:nth-child(8){ animation-delay:.48s }
+
+/* Utility delay classes */
+.delay-100{ --reveal-delay:.10s }
+.delay-200{ --reveal-delay:.20s }
+.delay-300{ --reveal-delay:.30s }
+.delay-400{ --reveal-delay:.40s }
+.delay-500{ --reveal-delay:.50s }
+.delay-600{ --reveal-delay:.60s }
+.delay-700{ --reveal-delay:.70s }
+.delay-800{ --reveal-delay:.80s }
+.delay-900{ --reveal-delay:.90s }
+.delay-1000{ --reveal-delay:1.00s }
+.delay-1100{ --reveal-delay:1.10s }
+.delay-1200{ --reveal-delay:1.20s }
+
+/* Fallback transitions w/o JS */
+.reveal:not(.is-visible){
+  transition:opacity .8s ease, transform .8s ease;
+}
 
 /* ================= REDUCED MOTION ================= */
 @media (prefers-reduced-motion: reduce){
-  .reveal{transition:none;opacity:1;transform:none}
+  .reveal,
+  .stagger > *{opacity:1; transform:none}
+  .is-visible,
+  .stagger.is-visible > *{animation:none}
   .theme-switch__thumb,.theme-switch__icon,.nav__link,.scroll-swap__icon,.pricing__card{transition:none}
   .headline::after{transition:none}
 }
