@@ -8,13 +8,16 @@
   <title>Contact • The Titan Method</title>
 </head>
 <body class="site">
+
+  <a class="visually-hidden-focusable" href="#main">Skip to content</a>
+
   <header class="site-header sticky-top">
-    <nav class="navbar navbar-expand-lg shadow-sm">
+    <nav class="navbar navbar-expand-lg shadow-sm" role="navigation" aria-label="Primary">
       <div class="container">
-        <a class="navbar-brand d-inline-flex align-items-center brand reveal" href="../index.html" data-reveal-delay="80">
+        <a class="navbar-brand d-inline-flex align-items-center brand" href="../index.html" aria-label="The Titan Method Home">
           <picture class="me-2">
             <source type="image/webp" srcset="../images/logo.webp" />
-            <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo" />
+            <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo" width="48" height="48" loading="eager" decoding="async" />
           </picture>
           <span class="brand__name">The Titan Method</span>
         </a>
@@ -25,7 +28,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse nav" id="primaryNav" aria-label="Primary">
+        <div class="collapse navbar-collapse nav" id="primaryNav">
           <ul class="navbar-nav ms-auto gap-2 nav__list">
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html#about">About</a></li>
@@ -60,8 +63,9 @@
     </nav>
   </header>
 
-  <main class="site-main">
+  <main id="main" class="site-main">
     <div class="container site-main__inner">
+
       <section class="wrapper d-lg-none">
         <div class="d-flex justify-content-end">
           <button
@@ -86,12 +90,12 @@
       </section>
 
       <section class="wrapper">
-        <h1 class="heading heading--title reveal" data-reveal-delay="60">Contact Us</h1>
-        <p class="p p--primary reveal" data-reveal-delay="120">Questions, collabs, or coaching inquiries? Send us a message—we’d love to hear from you.</p>
+        <h1 class="heading heading--title reveal" style="transition-delay:.06s">Contact Us</h1>
+        <p class="p p--primary reveal" style="transition-delay:.12s">Questions, collabs, or coaching inquiries? Send us a message—we’d love to hear from you.</p>
       </section>
 
       <section class="wrapper contact contact--map">
-        <div class="contact__map-card box reveal" data-reveal-delay="80">
+        <div class="contact__map-card box reveal" style="transition-delay:.08s">
           <div class="map-embed ratio ratio-16x9" role="region" aria-label="Map showing our address">
             <iframe
               src="https://www.google.com/maps?q=600+Congress+Ave,+Austin,+TX+78701&output=embed"
@@ -114,7 +118,7 @@
       </section>
 
       <section class="wrapper contact contact--form" id="contact">
-        <div class="box contact__form-card reveal" data-reveal-delay="140">
+        <div class="box contact__form-card reveal" style="transition-delay:.14s">
           <h2 class="heading heading--primary">Send us a message</h2>
           <p class="p p--secondary">We’ll reply via the email you provide.</p>
 
@@ -185,30 +189,18 @@
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <section class="wrapper site-footer__platform">
-        <a href="https://www.facebook.com/thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on Facebook">
-          <picture>
-            <source type="image/webp" srcset="../images/facebook.webp" />
-            <img class="icon" src="../images/facebook.png" alt="facebook" />
-          </picture>
+      <section class="wrapper site-footer__platform" aria-label="Social links">
+        <a href="https://www.facebook.com/thetitanmethod" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on Facebook">
+          <img class="icon" src="../images/facebook.png" alt="facebook" width="32" height="32" loading="lazy" decoding="async" />
         </a>
-        <a href="https://www.instagram.com/thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on Instagram">
-          <picture>
-            <source type="image/webp" srcset="../images/instagram.webp" />
-            <img class="icon" src="../images/instagram.png" alt="instagram" />
-          </picture>
+        <a href="https://www.instagram.com/thetitanmethod" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on Instagram">
+          <img class="icon" src="../images/instagram.png" alt="instagram" width="32" height="32" loading="lazy" decoding="async" />
         </a>
-        <a href="https://www.youtube.com/@thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on YouTube">
-          <picture>
-            <source type="image/webp" srcset="../images/youtube.webp" />
-            <img class="icon" src="../images/youtube.png" alt="youtube" />
-          </picture>
+        <a href="https://www.youtube.com/@thetitanmethod" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on YouTube">
+          <img class="icon" src="../images/youtube.png" alt="youtube" width="32" height="32" loading="lazy" decoding="async" />
         </a>
-        <a href="https://www.tiktok.com/@thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on TikTok">
-          <picture>
-            <source type="image/webp" srcset="../images/tiktok.webp" />
-            <img class="icon" src="../images/tiktok.png" alt="tiktok" />
-          </picture>
+        <a href="https://www.tiktok.com/@thetitanmethod" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on TikTok">
+          <img class="icon" src="../images/tiktok.png" alt="tiktok" width="32" height="32" loading="lazy" decoding="async" />
         </a>
       </section>
       <section class="wrapper site-footer__legal">

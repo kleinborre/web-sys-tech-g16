@@ -8,17 +8,27 @@
   <title>Pricing • The Titan Method</title>
 </head>
 <body class="site">
+
+  <a class="visually-hidden-focusable" href="#main">Skip to content</a>
+
   <header class="site-header sticky-top">
-    <nav class="navbar navbar-expand-lg shadow-sm">
+    <nav class="navbar navbar-expand-lg shadow-sm" role="navigation" aria-label="Primary">
       <div class="container">
-        <a class="navbar-brand d-inline-flex align-items-center brand reveal" href="../index.html" data-reveal-delay="80">
-          <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo me-2" />
+        <a class="navbar-brand d-inline-flex align-items-center brand" href="../index.html" aria-label="The Titan Method Home">
+          <picture class="me-2">
+            <source type="image/webp" srcset="../images/logo.webp" />
+            <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo" width="48" height="48" loading="eager" decoding="async" />
+          </picture>
           <span class="brand__name">The Titan Method</span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#primaryNav"
+                aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse nav" id="primaryNav" aria-label="Primary">
+
+        <div class="collapse navbar-collapse nav" id="primaryNav">
           <ul class="navbar-nav ms-auto gap-2 nav__list">
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html#about">About</a></li>
@@ -27,8 +37,15 @@
             <li class="nav-item"><a class="nav-link nav__link active" aria-current="page" href="../pricing/">Pricing</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../contact/">Contact</a></li>
           </ul>
+
           <div class="ms-lg-3 d-none d-lg-flex">
-            <button type="button" class="theme-switch js-theme-toggle" aria-label="Toggle dark mode" aria-pressed="false" data-theme-icon="moon">
+            <button
+              type="button"
+              class="theme-switch js-theme-toggle"
+              aria-label="Toggle dark mode"
+              aria-pressed="false"
+              data-theme-icon="moon"
+            >
               <span class="theme-switch__track" aria-hidden="true">
                 <svg class="theme-switch__icon theme-switch__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 4.5v-3M12 22.5v-3M4.5 12h-3M22.5 12h-3M5.86 5.86l-2.12-2.12M20.26 20.26l-2.12-2.12M5.86 18.14l-2.12 2.12M20.26 3.74l-2.12 2.12M12 7.5a4.5 4.5 0 1 0 0 9a4.5 4.5 0 0 0 0-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -46,11 +63,18 @@
     </nav>
   </header>
 
-  <main class="site-main">
+  <main id="main" class="site-main">
     <div class="container site-main__inner">
+
       <section class="wrapper d-lg-none">
         <div class="d-flex justify-content-end">
-          <button type="button" class="theme-switch theme-switch--mobile js-theme-toggle" aria-label="Toggle dark mode" aria-pressed="false" data-theme-icon="moon">
+          <button
+            type="button"
+            class="theme-switch theme-switch--mobile js-theme-toggle"
+            aria-label="Toggle dark mode"
+            aria-pressed="false"
+            data-theme-icon="moon"
+          >
             <span class="theme-switch__track" aria-hidden="true">
               <svg class="theme-switch__icon theme-switch__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 4.5v-3M12 22.5v-3M4.5 12h-3M22.5 12h-3M5.86 5.86l-2.12-2.12M20.26 20.26l-2.12-2.12M5.86 18.14l-2.12 2.12M20.26 3.74l-2.12 2.12M12 7.5a4.5 4.5 0 1 0 0 9a4.5 4.5 0 0 0 0-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -66,13 +90,13 @@
       </section>
 
       <section class="wrapper">
-        <h1 class="heading heading--title reveal" data-reveal-delay="60">Choose Your Membership</h1>
-        <p class="p p--primary reveal" data-reveal-delay="120">Pick the plan that fits your goals. Upgrade or cancel anytime.</p>
+        <h1 class="heading heading--title reveal" style="transition-delay:.06s">Choose Your Membership</h1>
+        <p class="p p--primary reveal" style="transition-delay:.12s">Pick the plan that fits your goals. Upgrade or cancel anytime.</p>
       </section>
 
       <section class="wrapper pricing" id="plans">
         <div class="pricing__grid">
-          <article class="box pricing__card reveal" data-reveal-delay="80" aria-label="Standard plan">
+          <article class="box pricing__card reveal" style="transition-delay:.08s" aria-label="Standard plan">
             <header class="pricing__head">
               <h2 class="heading heading--primary">Standard</h2>
               <div class="pricing__numbers">
@@ -87,11 +111,16 @@
               <li>Email support (48–72h)</li>
             </ul>
             <div class="pricing__cta stack-center">
-              <button class="btn btn-primary js-validate-submit" type="button" data-form="freeTrialForm" data-success-modal="#trialSuccess" data-plan="Standard">FREE trial for 7 days</button>
+              <button class="btn btn-primary"
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#freeTrialModal">
+                FREE trial for 7 days
+              </button>
             </div>
           </article>
 
-          <article class="box pricing__card pricing__card--popular reveal" data-reveal-delay="120" aria-label="Most popular plan">
+          <article class="box pricing__card pricing__card--popular reveal" style="transition-delay:.12s" aria-label="Most popular plan">
             <div class="pricing__badge" aria-hidden="true">Most Popular</div>
             <header class="pricing__head">
               <h2 class="heading heading--primary">Premium</h2>
@@ -107,11 +136,16 @@
               <li>Priority support (24–48h)</li>
             </ul>
             <div class="pricing__cta stack-center">
-              <button class="btn btn-dark js-validate-submit" type="button" data-form="premiumForm" data-success-modal="#premiumSuccess" data-plan="Premium">Go Premium</button>
+              <button class="btn btn-dark"
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#premiumModal">
+                Go Premium
+              </button>
             </div>
           </article>
 
-          <article class="box pricing__card pricing__card--vip on-dark reveal" data-reveal-delay="160" aria-label="VIP plan">
+          <article class="box pricing__card pricing__card--vip on-dark reveal" style="transition-delay:.16s" aria-label="VIP plan">
             <header class="pricing__head">
               <h2 class="heading heading--primary">VIP</h2>
               <div class="pricing__numbers">
@@ -126,12 +160,17 @@
               <li>Fast-track support (&lt; 12h)</li>
             </ul>
             <div class="pricing__cta stack-center">
-              <button class="btn btn-primary js-validate-submit" type="button" data-form="vipForm" data-success-modal="#vipSuccess" data-plan="VIP">Join VIP</button>
+              <button class="btn btn-primary"
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#vipModal">
+                Join VIP
+              </button>
             </div>
           </article>
         </div>
 
-        <p class="p p--secondary pricing__note reveal" data-reveal-delay="200">No contracts. Cancel anytime. Upgrade between tiers whenever you’re ready.</p>
+        <p class="p p--secondary pricing__note reveal" style="transition-delay:.20s">No contracts. Cancel anytime. Upgrade between tiers whenever you’re ready.</p>
       </section>
     </div>
   </main>
@@ -142,6 +181,7 @@
     </svg>
   </button>
 
+  <!-- Standard trial modal -->
   <div class="modal fade" id="freeTrialModal" tabindex="-1" aria-labelledby="freeTrialTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal__card">
@@ -171,7 +211,7 @@
             </div>
           </div>
           <div class="modal-footer modal__actions">
-            <button type="submit" class="btn btn-primary">Subscribe Now</button>
+            <button type="submit" class="btn btn-primary" data-success-modal="#trialSuccess">Subscribe Now</button>
             <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
           </div>
         </form>
@@ -179,6 +219,7 @@
     </div>
   </div>
 
+  <!-- Trial success -->
   <div class="modal fade" id="trialSuccess" tabindex="-1" aria-labelledby="trialSuccessTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal__card">
@@ -196,6 +237,7 @@
     </div>
   </div>
 
+  <!-- Premium modal -->
   <div class="modal fade" id="premiumModal" tabindex="-1" aria-labelledby="premiumTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal__card">
@@ -226,7 +268,7 @@
             </div>
           </div>
           <div class="modal-footer modal__actions">
-            <button type="submit" class="btn btn-dark">Activate Premium</button>
+            <button type="submit" class="btn btn-dark" data-success-modal="#premiumSuccess">Activate Premium</button>
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
           </div>
         </form>
@@ -234,6 +276,7 @@
     </div>
   </div>
 
+  <!-- Premium success -->
   <div class="modal fade" id="premiumSuccess" tabindex="-1" aria-labelledby="premiumSuccessTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal__card">
@@ -251,6 +294,7 @@
     </div>
   </div>
 
+  <!-- VIP modal -->
   <div class="modal fade" id="vipModal" tabindex="-1" aria-labelledby="vipTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal__card">
@@ -281,7 +325,7 @@
             </div>
           </div>
           <div class="modal-footer modal__actions">
-            <button type="submit" class="btn btn-primary">Activate VIP</button>
+            <button type="submit" class="btn btn-primary" data-success-modal="#vipSuccess">Activate VIP</button>
             <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
           </div>
         </form>
@@ -289,6 +333,7 @@
     </div>
   </div>
 
+  <!-- VIP success -->
   <div class="modal fade" id="vipSuccess" tabindex="-1" aria-labelledby="vipSuccessTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal__card">
@@ -297,7 +342,7 @@
           <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body modal__body">
-          <p class="p p--primary">You're in! Look out for your VIP welcome email with next steps and your first drop.</p>
+          <p class="p p--primary">You're in! Watch for your VIP welcome email with next steps and your first drop.</p>
         </div>
         <div class="modal-footer modal__actions">
           <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Back to Pricing</button>
@@ -308,30 +353,18 @@
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <section class="wrapper site-footer__platform">
-        <a href="https://www.facebook.com/thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on Facebook">
-          <picture>
-            <source type="image/webp" srcset="../images/facebook.webp" />
-            <img class="icon" src="../images/facebook.png" alt="facebook" />
-          </picture>
+      <section class="wrapper site-footer__platform" aria-label="Social links">
+        <a href="https://www.facebook.com/thetitanmethod" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on Facebook">
+          <img class="icon" src="../images/facebook.png" alt="facebook" width="32" height="32" loading="lazy" decoding="async" />
         </a>
-        <a href="https://www.instagram.com/thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on Instagram">
-          <picture>
-            <source type="image/webp" srcset="../images/instagram.webp" />
-            <img class="icon" src="../images/instagram.png" alt="instagram" />
-          </picture>
+        <a href="https://www.instagram.com/thetitanmethod" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on Instagram">
+          <img class="icon" src="../images/instagram.png" alt="instagram" width="32" height="32" loading="lazy" decoding="async" />
         </a>
-        <a href="https://www.youtube.com/@thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on YouTube">
-          <picture>
-            <source type="image/webp" srcset="../images/youtube.webp" />
-            <img class="icon" src="../images/youtube.png" alt="youtube" />
-          </picture>
+        <a href="https://www.youtube.com/@thetitanmethod" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on YouTube">
+          <img class="icon" src="../images/youtube.png" alt="youtube" width="32" height="32" loading="lazy" decoding="async" />
         </a>
-        <a href="https://www.tiktok.com/@thetitanmethod" class="reveal" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on TikTok">
-          <picture>
-            <source type="image/webp" srcset="../images/tiktok.webp" />
-            <img class="icon" src="../images/tiktok.png" alt="tiktok" />
-          </picture>
+        <a href="https://www.tiktok.com/@thetitanmethod" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on TikTok">
+          <img class="icon" src="../images/tiktok.png" alt="tiktok" width="32" height="32" loading="lazy" decoding="async" />
         </a>
       </section>
       <section class="wrapper site-footer__legal">

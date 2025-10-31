@@ -7,12 +7,12 @@ An earlier build used a “Lead Capture: Local Storage + JSON Download (no backe
 
 ## Team
 
-| Member                  | Role(s)                                   |
-| ----------------------- | ----------------------------------------- |
-| Abegail Imee Enriquez   | Project Manager                           |
-| Alvin Tubtub            | Documentation Lead • External Source Lead |
-| Emmar John Alvarez      | QA Leader                                 |
-| Oliver Jann Klein Borre | Lead Developer • QA Tester                |
+| Member                  | Role(s)                                                            |
+| ----------------------- | ------------------------------------------------------------------ |
+| Abegail Imee Enriquez   | Project Manager • Owner (Layout/Responsive/Wireframe/Requirements) |
+| Alvin Tubtub            | Documentation Lead • External Source Lead                          |
+| Emmar John Alvarez      | QA Leader                                                          |
+| Oliver Jann Klein Borre | Lead Developer • QA Tester                                         |
 
 ---
 
@@ -30,11 +30,12 @@ Build a fast, accessible, mobile-first site that converts visitors into trial si
 
 ## What’s Included
 
-* **Bootstrap 5.3** layout utilities
-* **Theme system**: Light/Dark toggle (saved in `localStorage`)
+* **Bootstrap 5.3** utilities (containers, grid, spacing)
+* **Theme system (dark-first)**: default dark, prepainted to avoid flashes; toggle persists via `localStorage`
+* **Responsive layout**: Flexbox/Grid across sections (`.wrapper`, `.about__main`, program/testimonials rows)
 * **Accessible modals**: Bootstrap JS, focus-trap, ESC to close
 * **Form UX**: Required fields, inline alerts, success modals
-* **Keyboard/A11y**: Focus states, ARIA, reduced-motion support
+* **Keyboard/A11y**: `:focus-visible`, ARIA, reduced-motion support
 * **Scroll helper**: Floating “scroll to footer/top” button
 * **Code hygiene**: Scoped selectors, single CSS/JS bundle
 
@@ -79,23 +80,30 @@ python -m http.server 8080
 
 ### 1) Theming
 
+* **Dark-first default** with prepaint (sets `data-theme="dark"` and `color-scheme: dark` ASAP to prevent flash)
 * Desktop + mobile toggles
 * Persists with `localStorage` key `ttm-theme` (`light`/`dark`)
-* Respects `prefers-color-scheme` if unset
+* Honors `prefers-color-scheme` only if user hasn’t chosen
 
 ### 2) Forms & Success Flow
 
 * Forms use `.js-validate-form.js-demo-form`
 * Required: `name`, `email` (+ `subject`, `message` on Contact)
-* On success: green alert; matching success modal opens (Contact uses `#contactSuccess`)
+* On success: green alert; matching success modal opens (e.g., Contact → `#contactSuccess`)
 
 ### 3) Accessibility
 
 * Proper labels/ids, `:focus-visible`, ARIA on modals
 * Animations respect reduced-motion
-* All informative images have `alt`
+* All informative images have descriptive `alt`
 
-### 4) Performance & UX
+### 4) Layout, Typography & Responsiveness
+
+* **Layout classes implemented** for predictable section structure (`.wrapper`, `.about__main`, program/testimonials splits)
+* **Responsive rules**: mobile-first with breakpoint refinements for tablets and desktops
+* **Typography**: increased paragraph line height for readability on all viewports
+
+### 5) Performance & UX
 
 * Modern CSS (`clamp`, variables)
 * Subtle card hover/active feedback
@@ -106,7 +114,7 @@ python -m http.server 8080
 ## Development Standards
 
 * Keep README in sync with behavior
-* Prefer Bootstrap utilities for layout
+* Prefer Bootstrap utilities for layout; layer custom Flex/Grid where needed
 * Scope JS to intent-specific elements; don’t block defaults globally
 * Remove unused CSS/JS/HTML before committing
 * New forms must include:
@@ -121,7 +129,9 @@ python -m http.server 8080
 ## Testing Checklist (Manual)
 
 **Navigation** — Mobile toggler works; active link highlighted
-**Theme** — Toggle preserves choice; contrast OK
+**Theme** — Dark is default; toggle preserves choice; contrast OK
+**Layout/Responsive** — Sections align correctly (about/program/testimonials); stack gracefully on small screens; tablet breakpoints verified
+**Typography** — Paragraph line height improves readability across viewports
 **Pricing** — CTAs open the correct modal; required fields enforced
 **Contact** — Required fields enforced; `#contactSuccess` opens
 **Keyboard** — Enter submits; ESC closes modals; tab cycles correctly
@@ -131,18 +141,23 @@ python -m http.server 8080
 
 ## Simple Issue Tracking (Current Sprint)
 
-| ID  | Item                                                                | Owner  | Status          |
-| --- | ------------------------------------------------------------------- | ------ | --------------- |
-| T01 | Replace CSS `:target` modals with Bootstrap JS modals               | Oliver | Done            |
-| T02 | Scope handlers to `.js-validate-form.js-demo-form` only             | Oliver | Done            |
-| T03 | Add Address field to all pricing modals                             | Oliver | Done            |
-| T04 | Keyboard: Enter submits; ESC closes modals                          | Oliver | Done            |
-| T05 | Alt text pass on informative images                                 | Emmar  | Done            |
-| T06 | Remove unused CSS/JS/HTML                                           | Oliver | Done            |
-| T07 | README sync with current implementation                             | Alvin  | Done            |
-| T08 | QA pass against checklist                                           | Emmar  | In Progress     |
-| T09 | Deprecate legacy lead capture (localStorage/JSON); remove from docs | Oliver | Done            |
-| T10 | External Testing (Homework)                                         | Team   | Pending (Nov 3) |
+> The first three entries address layout, responsiveness, and typography. **Owner: Abegail**.
+
+| ID  | Item                                                                                                | Owner   | Status          |
+| --- | --------------------------------------------------------------------------------------------------- | ------- | --------------- |
+| T01 | Implement section layouts using Flex/Grid (`.wrapper`, `.about__main`, program/testimonials splits) | Abegail | Done            |
+| T02 | Add mobile-first media queries; refine tablet/desktop breakpoints for balanced stacking             | Abegail | Done            |
+| T03 | Increase paragraph line height for readability across all viewports                                 | Abegail | Done            |
+| T04 | Replace CSS `:target` modals with Bootstrap JS modals                                               | Oliver  | Done            |
+| T05 | Scope handlers to `.js-validate-form.js-demo-form` only                                             | Oliver  | Done            |
+| T06 | Add Address field to all pricing modals                                                             | Oliver  | Done            |
+| T07 | Keyboard: Enter submits; ESC closes modals                                                          | Oliver  | Done            |
+| T08 | Alt text pass on informative images                                                                 | Emmar   | Done            |
+| T09 | Remove unused CSS/JS/HTML                                                                           | Oliver  | Done            |
+| T10 | README sync with current implementation                                                             | Alvin   | Done            |
+| T11 | QA pass against checklist                                                                           | Emmar   | In Progress     |
+| T12 | Deprecate legacy lead capture (localStorage/JSON); remove from docs                                 | Oliver  | Done            |
+| T13 | External Testing (Homework)                                                                         | Team    | Pending (Nov 3) |
 
 ---
 
@@ -150,8 +165,8 @@ python -m http.server 8080
 
 | Deliverable                                         | Due Date (11:59 PM) | Status  |
 | --------------------------------------------------- | ------------------- | ------- |
-| Requirements Gathering Document                     | 08-Sep-2025         | Done    |
-| Homework: Project Wireframe                         | 15-Sep-2025         | Done    |
+| Requirements Gathering Document *(Owner: Abegail)*  | 08-Sep-2025         | Done    |
+| Homework: Project Wireframe *(Owner: Abegail)*      | 15-Sep-2025         | Done    |
 | Week 4: Milestone 1 – HTML/CSS Template (Draft)     | 22-Sep-2025         | Done    |
 | Milestone 1 Submission – HTML/CSS (no Bootstrap/JS) | 29-Sep-2025         | Done    |
 | Milestone 2 – Interactive Website (Draft)           | 20-Oct-2025         | Done    |
@@ -164,9 +179,12 @@ python -m http.server 8080
 
 ## Changelog (Latest)
 
-* Removed legacy lead-capture (localStorage/JSON) and scrubbed documentation
+* **Theme**: Dark-first default with prepaint; `color-scheme` hint to prevent flash
+* **Layout**: Implemented Flex/Grid structure for sections; cleaned single-page alignment
+* **Responsive**: Added mobile-first breakpoints; tablet/desktop refinements
+* **Typography**: Increased paragraph line height for readability
 * Unified success-modal flow; validation trimmed and scoped
-* Pricing modals include Address input for consistent data
+* Pricing modals include Address input
 * Scroll helper logic refined
 * Images now served as WebP with fallbacks
 * README synchronized with codebase
