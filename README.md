@@ -3,7 +3,7 @@
 **HTML5 • Modern CSS • Bootstrap 5.3 • Vanilla JS • GitHub Pages**
 
 **Disclaimer**
-A previous version included a “Lead Capture: Local Storage + JSON Download (no backend)” flow. We removed it due to security and privacy risk (client-side download of user data) and because the course scope is static HTML/CSS/JS without a backend. This capability will be implemented later in the advanced course.
+An earlier build used a “Lead Capture: Local Storage + JSON Download (no backend)” flow. We removed it due to privacy risk (client-side downloads of user data) and because the course scope is a static site with no backend. This capability will be revisited in the advanced course.
 
 ## Team
 
@@ -18,7 +18,7 @@ A previous version included a “Lead Capture: Local Storage + JSON Download (no
 
 ## Project Purpose
 
-Build a fast, accessible, mobile-first site that converts visitors into trial sign-ups and paid program tiers for **The Titan Method** by Coach Tavion Miles. The site is static and GitHub Pages-ready, with Bootstrap JS modals and client-side validation (no data persistence).
+Build a fast, accessible, mobile-first site that converts visitors into trial sign-ups and paid tiers for **The Titan Method** by Coach Tavion Miles. Static, GitHub Pages–ready. Bootstrap JS modals and client-side validation only (no data persistence).
 
 **Core pages**
 
@@ -30,13 +30,13 @@ Build a fast, accessible, mobile-first site that converts visitors into trial si
 
 ## What’s Included
 
-* **Bootstrap 5.3** layout: grid utilities, responsive containers, spacing helpers
-* **Theme system**: Light/Dark toggle persisted via `localStorage`
-* **Accessible modals**: Bootstrap JS modals with focus-trap and ESC to close
-* **Form UX**: Required fields, inline error/success alerts, success modals
-* **Keyboard/A11y**: Focus states, ARIA labels, reduced-motion support
-* **Scroll helper**: Floating “scroll to footer/top” button with smooth animation
-* **Code hygiene**: Scoped selectors; no unused code; single CSS/JS bundle
+* **Bootstrap 5.3** layout utilities
+* **Theme system**: Light/Dark toggle (saved in `localStorage`)
+* **Accessible modals**: Bootstrap JS, focus-trap, ESC to close
+* **Form UX**: Required fields, inline alerts, success modals
+* **Keyboard/A11y**: Focus states, ARIA, reduced-motion support
+* **Scroll helper**: Floating “scroll to footer/top” button
+* **Code hygiene**: Scoped selectors, single CSS/JS bundle
 
 ---
 
@@ -56,19 +56,19 @@ Build a fast, accessible, mobile-first site that converts visitors into trial si
 └─ images/
 ```
 
-* One global CSS (`styles/style.css`) and one global JS (`scripts/script.js`)
+* One global CSS and one global JS
 * Bootstrap 5.3 via CDN (CSS + bundle JS)
 
 ---
 
 ## Running Locally
 
-**A.** Open `index.html` directly in a browser
-**B.** Serve statically to mirror Pages paths:
+**A.** Open `index.html` directly
+**B.** Serve statically:
 
 ```bash
 python -m http.server 8080
-# visit http://localhost:8080
+# http://localhost:8080
 ```
 
 **Deploy (GitHub Pages):** Settings → Pages → Deploy from a branch → `main` → `/root`
@@ -79,93 +79,70 @@ python -m http.server 8080
 
 ### 1) Theming
 
-* Toggle in navbar (desktop) and mirrored in mobile
-* Persists using `localStorage` key `ttm-theme` (`light` or `dark`)
-* Respects `prefers-color-scheme` when no preference is saved
+* Desktop + mobile toggles
+* Persists with `localStorage` key `ttm-theme` (`light`/`dark`)
+* Respects `prefers-color-scheme` if unset
 
-### 2) Forms, Validation, and Success Flow
+### 2) Forms & Success Flow
 
-* All actionable forms use `.js-validate-form.js-demo-form`
-* Required inputs: `name`, `email` (+ `subject`, `message` on Contact)
-* On success:
-
-  * Green success alert appears
-  * If in a modal: the form modal closes and the matching success modal opens
-  * On Contact page: opens `#contactSuccess`
+* Forms use `.js-validate-form.js-demo-form`
+* Required: `name`, `email` (+ `subject`, `message` on Contact)
+* On success: green alert; matching success modal opens (Contact uses `#contactSuccess`)
 
 ### 3) Accessibility
 
-* Labels bound to inputs (`for`/`id`), visible `:focus-visible` outlines
-* Modals have `aria-labelledby` and accessible dismiss buttons
-* Scroll/reveal animations respect `prefers-reduced-motion`
-* `alt` text on all informative images
+* Proper labels/ids, `:focus-visible`, ARIA on modals
+* Animations respect reduced-motion
+* All informative images have `alt`
 
-### 4) Performance and UX
+### 4) Performance & UX
 
-* Modern CSS (`clamp`, CSS variables)
-* Controlled animations; hover/active feedback on pricing cards
-* Scroll helper button flips intent (footer vs top) based on position/direction
+* Modern CSS (`clamp`, variables)
+* Subtle card hover/active feedback
+* Scroll helper flips intent based on position
 
 ---
 
 ## Development Standards
 
 * Keep README in sync with behavior
-* Use Bootstrap grid/utilities for layout; prefer utilities over custom CSS
-* Scope JS to intent-specific elements; do not prevent default globally
+* Prefer Bootstrap utilities for layout
+* Scope JS to intent-specific elements; don’t block defaults globally
 * Remove unused CSS/JS/HTML before committing
-* All new forms must:
+* New forms must include:
 
-  * include `.js-validate-form.js-demo-form`
-  * provide `.js-error-msg` and `.js-success-msg` containers
-  * set `data-success-modal` when applicable
-  * optionally set `data-plan` (e.g., Standard/Premium/VIP/Contact Inquiry)
+  * `.js-validate-form.js-demo-form`
+  * `.js-error-msg` and `.js-success-msg`
+  * `data-success-modal` when applicable
+  * optional `data-plan` (Standard/Premium/VIP/Contact)
 
 ---
 
 ## Testing Checklist (Manual)
 
-**Navigation**
-
-* Mobile navbar toggler opens/closes; focus order is logical; active link highlighted
-
-**Theme**
-
-* Toggle switches light/dark; refresh preserves choice; contrast is legible
-
-**Pricing**
-
-* Standard/Premium/VIP CTAs open the correct modal
-* Required fields enforced; valid input shows the correct success modal
-
-**Contact**
-
-* Required fields enforced; success opens `#contactSuccess`
-
-**Keyboard**
-
-* Enter submits forms; ESC dismisses modals; tab order cycles inside modals
-
-**Console**
-
-* No errors; no network calls
+**Navigation** — Mobile toggler works; active link highlighted
+**Theme** — Toggle preserves choice; contrast OK
+**Pricing** — CTAs open the correct modal; required fields enforced
+**Contact** — Required fields enforced; `#contactSuccess` opens
+**Keyboard** — Enter submits; ESC closes modals; tab cycles correctly
+**Console** — No errors; no network calls
 
 ---
 
 ## Simple Issue Tracking (Current Sprint)
 
-| ID       | Item                                                                               | Owner  | Status          |
-| -------- | ---------------------------------------------------------------------------------- | ------ | --------------- |
-| I-01     | Replace CSS `:target` modals with Bootstrap JS modals                              | Oliver | Done            |
-| I-02     | Scope handlers to `.js-validate-form.js-demo-form` only                            | Oliver | Done            |
-| I-03     | Add Address field across all pricing modals                                        | Oliver | Done            |
-| I-04     | Keyboard: Enter submits, ESC closes modals                                         | Oliver | Done            |
-| I-05     | Alt text pass on all informative images                                            | Emmar  | Done            |
-| I-06     | Remove unused CSS/JS/HTML                                                          | Oliver | Done            |
-| I-07     | README sync with current implementation                                            | Alvin  | Done            |
-| I-08     | QA pass against checklist                                                          | Emmar  | In Progress     |
-| **I-09** | **Deprecate legacy lead capture (localStorage/JSON download); remove code & docs** | Oliver | Done            |
-| I-10     | External Testing (Homework)                                                        | Team   | Pending (Nov 3) |
+| ID  | Item                                                                | Owner  | Status          |
+| --- | ------------------------------------------------------------------- | ------ | --------------- |
+| T01 | Replace CSS `:target` modals with Bootstrap JS modals               | Oliver | Done            |
+| T02 | Scope handlers to `.js-validate-form.js-demo-form` only             | Oliver | Done            |
+| T03 | Add Address field to all pricing modals                             | Oliver | Done            |
+| T04 | Keyboard: Enter submits; ESC closes modals                          | Oliver | Done            |
+| T05 | Alt text pass on informative images                                 | Emmar  | Done            |
+| T06 | Remove unused CSS/JS/HTML                                           | Oliver | Done            |
+| T07 | README sync with current implementation                             | Alvin  | Done            |
+| T08 | QA pass against checklist                                           | Emmar  | In Progress     |
+| T09 | Deprecate legacy lead capture (localStorage/JSON); remove from docs | Oliver | Done            |
+| T10 | External Testing (Homework)                                         | Team   | Pending (Nov 3) |
 
 ---
 
@@ -191,7 +168,7 @@ python -m http.server 8080
 * Unified success-modal flow; validation trimmed and scoped
 * Pricing modals include Address input for consistent data
 * Scroll helper logic refined
-* Image assets served as WebP with fallbacks
+* Images now served as WebP with fallbacks
 * README synchronized with codebase
 
 ---
