@@ -1,4 +1,4 @@
-/* The Titan Method Frontend JS — trimmed for current features only */
+/* The Titan Method Frontend JS Script */
 
 (function () {
   'use strict';
