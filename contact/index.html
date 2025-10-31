@@ -118,7 +118,15 @@
           <h2 class="heading heading--primary">Send us a message</h2>
           <p class="p p--secondary">We’ll reply via the email you provide.</p>
 
-          <form id="contactForm" class="contact__form js-validate-form" novalidate data-plan="Contact Inquiry">
+          <!-- Added hooks for localStorage persistence via script.js -->
+          <form
+            id="contactForm"
+            class="contact__form js-validate-form js-demo-form"
+            novalidate
+            data-plan="Contact Inquiry"
+            data-storage-collection="titan_leads"
+            data-storage-type="contact"
+          >
             <div class="alert alert-danger d-none js-error-msg" role="alert">
               Please fill in all required fields.
             </div>
@@ -136,6 +144,7 @@
                 placeholder="John Doe"
                 autocomplete="name"
                 required
+                data-storage-field="name"
               />
             </div>
 
@@ -149,6 +158,7 @@
                 placeholder="you@example.com"
                 autocomplete="email"
                 required
+                data-storage-field="email"
               />
             </div>
 
@@ -161,6 +171,7 @@
                 class="form-control form__input"
                 placeholder="Coaching Inquiry"
                 required
+                data-storage-field="subject"
               />
             </div>
 
@@ -173,6 +184,7 @@
                 rows="6"
                 placeholder="Write your message here..."
                 required
+                data-storage-field="message"
               ></textarea>
             </div>
 

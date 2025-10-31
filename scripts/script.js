@@ -1,4 +1,4 @@
-/* The Titan Method Frontend JS */
+/* The Titan Method Frontend JS — trimmed for current features only */
 
 (function () {
   'use strict';
@@ -39,17 +39,13 @@
     function currentTheme() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved === 'light' || saved === 'dark') return saved;
-
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-      }
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
       return 'light';
     }
 
     function applyTheme(theme) {
       root.setAttribute('data-theme', theme);
       const isDark = theme === 'dark';
-
       toggles().forEach((btn) => {
         btn.setAttribute('aria-pressed', String(isDark));
         btn.setAttribute('aria-label', isDark ? 'Activate light mode' : 'Activate dark mode');
@@ -62,7 +58,6 @@
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.js-theme-toggle');
       if (!btn) return;
-
       const next = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
       applyTheme(next);
       localStorage.setItem(STORAGE_KEY, next);
@@ -83,86 +78,28 @@
   (function heroBackgroundFade() {
     const hero = document.querySelector('.headline.reveal-bg');
     if (!hero) return;
-
-    setTimeout(() => {
-      hero.classList.add('headline--bg-ready');
-    }, 400);
+    setTimeout(() => hero.classList.add('headline--bg-ready'), 400);
   })();
 
   /* ============================
-     FORM VALIDATION + MODAL FLOW (+ email stub)
+     FORM VALIDATION
      ============================ */
 
-  // Basic email test
   function isEmailValid(value) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(value.trim());
   }
 
-  // Collect all fields from a form into an object
   function collectFormData(form) {
     const data = {};
     Array.from(form.elements).forEach((el) => {
       if (!el.name) return;
-      if (el.type === 'checkbox' || el.type === 'radio') {
-        if (!el.checked) return;
-      }
-      data[el.name] = el.value.trim();
+      if ((el.type === 'checkbox' || el.type === 'radio') && !el.checked) return;
+      data[el.name] = (el.value || '').trim();
     });
-
-    // add plan label context for emails
-    data.plan = form.dataset.plan || '';
-
+    // optional context
+    if (form.dataset.plan) data.plan = form.dataset.plan;
     return data;
-  }
-
-  // Generate a professional confirmation email body for the user
-  function confirmationEmailBody(planName) {
-    // planName can be "Standard", "Premium", "VIP", or "Contact Inquiry"
-    const planLine =
-      planName && planName !== 'Contact Inquiry'
-        ? `You're now registered for the ${planName} option with The Titan Method.`
-        : `We've received your message at The Titan Method.`;
-
-    const ctaLine =
-      planName && planName !== 'Contact Inquiry'
-        ? `Your next step is simple: watch your inbox for access instructions and onboarding details so you can start training with us.`
-        : `We'll get back to you shortly with next steps and any resources that can help you reach your goals faster.`;
-
-    return (
-      `${planLine}\n\n` +
-      `${ctaLine}\n\n` +
-      `If you don't see our message in the next few minutes, please check your Promotions or Spam folder.\n\n` +
-      `— The Titan Method Team`
-    );
-  }
-
-  // Stub where you'd actually POST to your backend to:
-  // 1. email lr.ojkborre@mmdc.mcl.edu.ph with all form data
-  // 2. email the user (their provided email) with confirmationEmailBody()
-  //
-  // This is intentionally a no-op on the frontend for security reasons.
-  function sendLead(formData) {
-    /* Example backend you could build:
-    fetch('/api/send-lead', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        toAdmin: 'lr.ojkborre@mmdc.mcl.edu.ph',
-        userEmail: formData.email,
-        subject: `[Titan Lead] ${formData.plan} - ${formData.name}`,
-        messageForAdmin: formData,
-        messageForUser: confirmationEmailBody(formData.plan)
-      })
-    });
-    */
-
-    // For now we just log, so you can see exactly what would be sent.
-    console.log('Lead captured (send to admin + user):', {
-      adminRecipient: 'lr.ojkborre@mmdc.mcl.edu.ph',
-      data: formData,
-      userConfirmationEmailText: confirmationEmailBody(formData.plan)
-    });
   }
 
   function validateFormFields(form) {
@@ -171,13 +108,10 @@
 
     requiredFields.forEach((field) => {
       const val = (field.value || '').trim();
-      let thisValid = val.length > 0;
+      let ok = val.length > 0;
+      if (ok && field.type === 'email') ok = isEmailValid(val);
 
-      if (thisValid && field.type === 'email') {
-        thisValid = isEmailValid(val);
-      }
-
-      if (!thisValid) {
+      if (!ok) {
         valid = false;
         field.classList.add('is-invalid');
       } else {
@@ -199,10 +133,11 @@
     return valid;
   }
 
-  // When user clicks CTA button on card, open that plan's modal
+  /* ============================
+     PRICING CARD → OPEN ITS MODAL
+     ============================ */
   (function initPlanButtons() {
     const planButtons = document.querySelectorAll('.pricing__cta .js-validate-submit');
-
     planButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
         const formId = btn.dataset.form;
@@ -211,67 +146,125 @@
         const formEl = document.getElementById(formId);
         if (!formEl) return;
 
-        // Plan name (Standard / Premium / VIP)
-        if (btn.dataset.plan) {
-          formEl.dataset.plan = btn.dataset.plan;
-        }
+        if (btn.dataset.plan) formEl.dataset.plan = btn.dataset.plan;
+        if (btn.dataset.successModal) formEl.dataset.successModal = btn.dataset.successModal;
 
-        // Pass success modal selector down to the form
-        if (btn.dataset.successModal) {
-          formEl.dataset.successModal = btn.dataset.successModal;
-        }
-
-        // Show the modal that actually wraps this form
         const parentModalEl = formEl.closest('.modal');
         if (!parentModalEl) return;
 
         if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
-          const parentBsModal = new bootstrap.Modal(parentModalEl);
-          parentBsModal.show();
+          new bootstrap.Modal(parentModalEl).show();
         }
       });
     });
   })();
 
-  // Handle full submission flow (contact + pricing modals)
+  /* ============================
+     LOCAL STORAGE PERSISTENCE + JSON DOWNLOAD
+     ============================ */
+
+  function uuid() {
+    return 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+  }
+
+  function readCollection(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function writeCollection(key, arr) {
+    try {
+      localStorage.setItem(key, JSON.stringify(arr, null, 2));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function buildRecord(form, payload) {
+    return {
+      id: uuid(),
+      plan: form.dataset.plan || payload.plan || '',
+      payload,
+      page: window.location.pathname,
+      createdAt: new Date().toISOString()
+    };
+  }
+
+  function triggerJsonDownload(filename, jsonString) {
+    const blob = new Blob([jsonString], { type: 'application/json;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 0);
+  }
+
+  function persistAndDownload(form, payload) {
+    const collectionKey = form.dataset.storageCollection;
+    if (!collectionKey) return;
+
+    const record = buildRecord(form, payload);
+    const existing = readCollection(collectionKey);
+    const updated = existing.concat(record);
+
+    if (writeCollection(collectionKey, updated)) {
+      const ts = new Date();
+      const pad = (n) => String(n).padStart(2, '0');
+      const filename =
+        `${collectionKey}-${ts.getFullYear()}${pad(ts.getMonth()+1)}${pad(ts.getDate())}-` +
+        `${pad(ts.getHours())}${pad(ts.getMinutes())}${pad(ts.getSeconds())}.json`;
+      triggerJsonDownload(filename, JSON.stringify(updated, null, 2));
+    }
+  }
+
+  /* ============================
+     SUBMISSION FLOW (contact + pricing modals)
+     Scope: .js-demo-form only
+     ============================ */
   (function initForms() {
-    const forms = document.querySelectorAll('.js-validate-form');
+    const forms = document.querySelectorAll('.js-validate-form.js-demo-form');
 
     forms.forEach((form) => {
-      // Remove invalid state while typing
       form.querySelectorAll('input, textarea').forEach((field) => {
-        field.addEventListener('input', () => {
-          field.classList.remove('is-invalid');
-        });
+        field.addEventListener('input', () => field.classList.remove('is-invalid'));
       });
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // If submitter defines success modal, attach to form
         const submitter = e.submitter;
-        if (submitter && submitter.dataset.successModal) {
+        if (submitter && submitter.dataset && submitter.dataset.successModal) {
           form.dataset.successModal = submitter.dataset.successModal;
         }
 
-        const ok = validateFormFields(form);
-        if (!ok) return;
+        if (!validateFormFields(form)) return;
 
-        // At this point, form is valid. Collect data and "send".
         const data = collectFormData(form);
-        sendLead(data);
 
-        // Now handle success modal flow (close current, open success modal)
+        // Persist to localStorage + trigger JSON download
+        persistAndDownload(form, data);
+
+        // Success modal flow
         const successSelector = form.dataset.successModal;
-        if (!successSelector) {
-          return; // nothing else to show (should not happen in our pages, but safe)
-        }
+        if (!successSelector) return;
 
         const nextModalEl = document.querySelector(successSelector);
         if (!nextModalEl || typeof bootstrap === 'undefined' || !bootstrap.Modal) return;
 
         const currentModalEl = form.closest('.modal.show');
-
         if (currentModalEl) {
           const currInstance = bootstrap.Modal.getInstance(currentModalEl) ||
                                new bootstrap.Modal(currentModalEl);
@@ -284,9 +277,7 @@
           currentModalEl.addEventListener('hidden.bs.modal', handleHidden);
           currInstance.hide();
         } else {
-          // e.g. contact page -> open success modal directly
-          const nextInstance = new bootstrap.Modal(nextModalEl);
-          nextInstance.show();
+          new bootstrap.Modal(nextModalEl).show();
         }
       });
     });
@@ -330,10 +321,7 @@
       let rotate = 0;
       if (atBottom() || direction === 'up') rotate = 180;
       icon.style.transform = `rotate(${rotate}deg)`;
-      btn.setAttribute(
-        'aria-label',
-        rotate === 180 ? 'Scroll to top' : 'Scroll to footer'
-      );
+      btn.setAttribute('aria-label', rotate === 180 ? 'Scroll to top' : 'Scroll to footer');
     }
 
     window.addEventListener('scroll', update, { passive: true });
@@ -355,7 +343,6 @@
      ============================ */
   (function revealOnScroll() {
     const els = Array.from(document.querySelectorAll('.reveal'));
-
     if (!('IntersectionObserver' in window) || !els.length) {
       els.forEach((el) => el.classList.add('is-visible'));
       return;
@@ -366,19 +353,11 @@
         if (!entry.isIntersecting) return;
         const el = entry.target;
         const delay = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
-
-        if (delay > 0) {
-          setTimeout(() => el.classList.add('is-visible'), delay);
-        } else {
-          el.classList.add('is-visible');
-        }
+        if (delay > 0) setTimeout(() => el.classList.add('is-visible'), delay);
+        else el.classList.add('is-visible');
         obs.unobserve(el);
       });
-    }, {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.14
-    });
+    }, { root: null, rootMargin: '0px', threshold: 0.14 });
 
     els.forEach((el) => io.observe(el));
   })();

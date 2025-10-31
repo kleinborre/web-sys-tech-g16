@@ -203,7 +203,15 @@
           <h2 class="modal-title heading heading--primary" id="freeTrialTitle">Claim Your 7-Day Free Trial</h2>
           <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form id="freeTrialForm" class="contact__form js-validate-form" novalidate data-plan="Standard">
+        <form
+          id="freeTrialForm"
+          class="contact__form js-validate-form js-demo-form"
+          novalidate
+          data-plan="Standard"
+          data-storage-collection="titan_leads"
+          data-storage-type="subscription"
+          data-plan-tier="Standard"
+        >
           <div class="modal-body modal__body">
 
             <div class="alert alert-danger d-none js-error-msg" role="alert">
@@ -215,22 +223,22 @@
 
             <div class="mb-3 form__row">
               <label for="ft-name" class="form-label form__label">Full Name <span aria-hidden="true">*</span></label>
-              <input id="ft-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required />
+              <input id="ft-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required data-storage-field="name" />
             </div>
 
             <div class="mb-3 form__row">
               <label for="ft-email" class="form-label form__label">Email <span aria-hidden="true">*</span></label>
-              <input id="ft-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required />
+              <input id="ft-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required data-storage-field="email" />
             </div>
 
             <div class="mb-3 form__row">
               <label for="ft-phone" class="form-label form__label">Phone</label>
-              <input id="ft-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" />
+              <input id="ft-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" data-storage-field="phone" />
             </div>
 
             <div class="mb-3 form__row">
               <label for="ft-address" class="form-label form__label">Address</label>
-              <input id="ft-address" name="address" type="text" class="form-control form__input" placeholder="123 Main St, City, State" />
+              <input id="ft-address" name="address" type="text" class="form-control form__input" placeholder="123 Main St, City, State" data-storage-field="address" />
             </div>
           </div>
 
@@ -270,7 +278,15 @@
           <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form id="premiumForm" class="contact__form js-validate-form" novalidate data-plan="Premium">
+        <form
+          id="premiumForm"
+          class="contact__form js-validate-form js-demo-form"
+          novalidate
+          data-plan="Premium"
+          data-storage-collection="titan_leads"
+          data-storage-type="subscription"
+          data-plan-tier="Premium"
+        >
           <div class="modal-body modal__body">
             <p class="p p--secondary">Unlock the full library, monthly Q&amp;A sessions, and priority support.</p>
 
@@ -283,22 +299,22 @@
 
             <div class="mb-3 form__row">
               <label for="pm-name" class="form-label form__label">Full Name <span aria-hidden="true">*</span></label>
-              <input id="pm-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required />
+              <input id="pm-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required data-storage-field="name" />
             </div>
 
             <div class="mb-3 form__row">
               <label for="pm-email" class="form-label form__label">Email <span aria-hidden="true">*</span></label>
-              <input id="pm-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required />
+              <input id="pm-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required data-storage-field="email" />
             </div>
 
             <div class="mb-3 form__row">
               <label for="pm-phone" class="form-label form__label">Phone</label>
-              <input id="pm-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" />
+              <input id="pm-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" data-storage-field="phone" />
             </div>
 
             <div class="mb-3 form__row">
               <label for="pm-address" class="form-label form__label">Address</label>
-              <input id="pm-address" name="address" type="text" class="form-control form__input" placeholder="123 Main St, City, State" />
+              <input id="pm-address" name="address" type="text" class="form-control form__input" placeholder="123 Main St, City, State" data-storage-field="address" />
             </div>
           </div>
 
@@ -338,7 +354,15 @@
           <button type="button" class="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form id="vipForm" class="contact__form js-validate-form" novalidate data-plan="VIP">
+        <form
+          id="vipForm"
+          class="contact__form js-validate-form js-demo-form"
+          novalidate
+          data-plan="VIP"
+          data-storage-collection="titan_leads"
+          data-storage-type="subscription"
+          data-plan-tier="VIP"
+        >
           <div class="modal-body modal__body">
             <p class="p p--secondary">Get VIP-only drops, monthly 1:1 check-ins, and fast-track support.</p>
 
@@ -351,22 +375,22 @@
 
             <div class="mb-3 form__row">
               <label for="vp-name" class="form-label form__label">Full Name <span aria-hidden="true">*</span></label>
-              <input id="vp-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required />
+              <input id="vp-name" name="name" type="text" class="form-control form__input" placeholder="John Doe" required data-storage-field="name" />
             </div>
 
             <div class="mb-3 form__row">
               <label for="vp-email" class="form-label form__label">Email <span aria-hidden="true">*</span></label>
-              <input id="vp-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required />
+              <input id="vp-email" name="email" type="email" class="form-control form__input" placeholder="you@example.com" required data-storage-field="email" />
             </div>
 
             <div class="mb-3 form__row">
               <label for="vp-phone" class="form-label form__label">Phone</label>
-              <input id="vp-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" />
+              <input id="vp-phone" name="phone" type="tel" class="form-control form__input" placeholder="(555) 555-0123" data-storage-field="phone" />
             </div>
 
             <div class="mb-3 form__row">
               <label for="vp-address" class="form-label form__label">Address</label>
-              <input id="vp-address" name="address" type="text" class="form-control form__input" placeholder="123 Main St, City, State" />
+              <input id="vp-address" name="address" type="text" class="form-control form__input" placeholder="123 Main St, City, State" data-storage-field="address" />
             </div>
           </div>
 

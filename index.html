@@ -10,10 +10,10 @@
 <body class="site">
 
   <header class="site-header sticky-top">
-    <nav class="navbar navbar-expand-lg shadow-sm">
+    <nav class="navbar navbar-expand-lg shadow-sm" role="navigation" aria-label="Primary">
       <div class="container">
         <a class="navbar-brand d-inline-flex align-items-center brand reveal" href="index.html" data-reveal-delay="80">
-          <img src="images/logo.png" alt="The Titan Method Logo" class="brand__logo me-2" />
+          <img src="images/logo.png" alt="The Titan Method Logo" class="brand__logo me-2" width="48" height="48" loading="eager" decoding="async" />
           <span class="brand__name">The Titan Method</span>
         </a>
 
@@ -23,7 +23,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse nav" id="primaryNav" aria-label="Primary">
+        <div class="collapse navbar-collapse nav" id="primaryNav">
           <ul class="navbar-nav ms-auto gap-2 nav__list">
             <li class="nav-item"><a class="nav-link nav__link" href="#about">About</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="#program">Program</a></li>
@@ -60,11 +60,11 @@
   <main class="site-main">
     <div class="container site-main__inner">
 
-      <!-- HERO / HEADLINE -->
       <section
         class="wrapper headline on-dark reveal-bg"
         id="home"
         data-bg-ready="false"
+        aria-label="Hero"
       >
         <div class="headline__utility d-flex d-lg-none">
           <button
@@ -97,11 +97,10 @@
         </div>
       </section>
 
-      <!-- ABOUT -->
-      <section class="wrapper about" id="about">
+      <section class="wrapper about" id="about" aria-labelledby="about-title">
         <div class="row g-lg-5 gy-5 align-items-stretch">
           <div class="col-12 col-lg-6 about__main d-flex flex-column reveal" data-reveal-delay="80">
-            <h3 class="heading heading--primary">My Journey, Your Transformation</h3>
+            <h3 class="heading heading--primary" id="about-title">My Journey, Your Transformation</h3>
 
             <div class="ratio ratio-16x9 video video--primary">
               <iframe
@@ -133,13 +132,12 @@
         </div>
       </section>
 
-      <!-- PROGRAM -->
-      <section class="wrapper program" id="program">
-        <h3 class="heading heading--primary program__title text-center reveal" data-reveal-delay="60">How The Titan Method Works</h3>
+      <section class="wrapper program" id="program" aria-labelledby="program-title">
+        <h3 class="heading heading--primary program__title text-center reveal" data-reveal-delay="60" id="program-title">How The Titan Method Works</h3>
 
         <div class="program__main">
           <div class="box program__box reveal" data-reveal-delay="80">
-            <img src="images/discover.jpg" alt="Discover" class="program__img" />
+            <img src="images/discover.jpg" alt="Discover" class="program__img" loading="lazy" decoding="async" />
             <h4 class="heading heading--secondary">1. Discover</h4>
             <ul class="program__list">
               <li class="p p--secondary">Learn your body's potential and reset your mindset.</li>
@@ -148,7 +146,7 @@
           </div>
 
           <div class="box program__box reveal" data-reveal-delay="120">
-            <img src="images/train.jpg" alt="Train" class="program__img" />
+            <img src="images/train.jpg" alt="Train" class="program__img" loading="lazy" decoding="async" />
             <h4 class="heading heading--secondary">2. Train</h4>
             <ul class="program__list">
               <li class="p p--secondary">Follow structured workouts and personalized coaching.</li>
@@ -157,7 +155,7 @@
           </div>
 
           <div class="box program__box reveal" data-reveal-delay="160">
-            <img src="images/transform.jpg" alt="Transform" class="program__img" />
+            <img src="images/transform.jpg" alt="Transform" class="program__img" loading="lazy" decoding="async" />
             <h4 class="heading heading--secondary">3. Transform</h4>
             <ul class="program__list">
               <li class="p p--secondary">Achieve visible, lasting results in body and lifestyle.</li>
@@ -180,14 +178,13 @@
         </div>
       </section>
 
-      <!-- TESTIMONIALS -->
-      <section class="wrapper testimonials" id="testimonials">
-        <h3 class="heading heading--primary reveal" data-reveal-delay="60">Real People, Real Results</h3>
+      <section class="wrapper testimonials" id="testimonials" aria-labelledby="testimonials-title">
+        <h3 class="heading heading--primary reveal" data-reveal-delay="60" id="testimonials-title">Real People, Real Results</h3>
 
         <div class="testimonials__main">
           <div class="d-flex flex-wrap gap-3 justify-content-center">
             <div class="testimonials__card reveal" data-reveal-delay="80">
-              <img src="images/jordan.jpg" alt="Transformation client Jordan" class="testimonials__img" />
+              <img src="images/jordan.jpg" alt="Transformation client Jordan" class="testimonials__img" loading="lazy" decoding="async" />
               <h5 class="heading heading--tertiary">Jordan M.</h5>
               <p class="p p--primary">
                 “Before The Titan Method, I felt stuck. In just 12 weeks, I lost 20 lbs and built the confidence I never thought I'd have again.”
@@ -202,7 +199,7 @@
             </div>
 
             <div class="testimonials__card reveal" data-reveal-delay="120">
-              <img src="images/rachel.jpg" alt="Transformation client Rachel" class="testimonials__img" />
+              <img src="images/rachel.jpg" alt="Transformation client Rachel" class="testimonials__img" loading="lazy" decoding="async" />
               <h5 class="heading heading--tertiary">Rachel S.</h5>
               <p class="p p--primary">
                 “I joined to lose weight, but I gained so much more — discipline, energy, and a stronger mindset. The Titan Method is life-changing.”
@@ -217,7 +214,7 @@
             </div>
 
             <div class="testimonials__card reveal" data-reveal-delay="160">
-              <img src="images/daniel.jpg" alt="Transformation client Daniel" class="testimonials__img" />
+              <img src="images/daniel.jpg" alt="Transformation client Daniel" class="testimonials__img" loading="lazy" decoding="async" />
               <h5 class="heading heading--tertiary">Daniel K.</h5>
               <p class="p p--primary">
                 “Tier 3 was the push I needed. The one-on-one coaching with Tavion made all the difference. Stronger body, sharper mind — best decision I've made.”
@@ -243,8 +240,8 @@
 
           <div class="testimonials-cta__box box on-dark flex-fill reveal" data-reveal-delay="240">
             <div class="testimonials-cta__card">
-              <img src="images/testimonials-cta-1.jpg" alt="Coaching in action 1" class="testimonials-cta__img" />
-              <img src="images/testimonials-cta-2.jpg" alt="Coaching in action 2" class="testimonials-cta__img" />
+              <img src="images/testimonials-cta-1.jpg" alt="Coaching in action 1" class="testimonials-cta__img" loading="lazy" decoding="async" />
+              <img src="images/testimonials-cta-2.jpg" alt="Coaching in action 2" class="testimonials-cta__img" loading="lazy" decoding="async" />
             </div>
             <div class="testimonials-cta__card--text">
               <p class="p p--secondary"><b>Here's what you get for free:</b></p>
@@ -260,16 +257,16 @@
         </div>
       </section>
 
-      <!-- CTA GALLERY -->
-      <section class="wrapper cta" id="pricing">
+      <section class="wrapper cta" id="pricing" aria-labelledby="pricing-title">
+        <h3 class="visually-hidden" id="pricing-title">Pricing Call to Action</h3>
         <div class="row g-3 align-items-center">
           <div class="col-12 col-lg-6">
-            <img src="images/tavion-m-photoshoot-1.jpg" alt="Coach Tavion posing strong" class="cta__img reveal" data-reveal-delay="80" />
+            <img src="images/tavion-m-photoshoot-1.jpg" alt="Coach Tavion posing strong" class="cta__img reveal" data-reveal-delay="80" loading="lazy" decoding="async" />
           </div>
           <div class="col-12 col-lg-6">
             <div class="d-flex flex-column gap-3">
-              <img src="images/tavion-m-photoshoot-2.jpg" alt="Coach Tavion focused" class="cta-gallery__img reveal" data-reveal-delay="120" />
-              <img src="images/tavion-m-photoshoot-3.jpg" alt="Coach Tavion training" class="cta-gallery__img reveal" data-reveal-delay="160" />
+              <img src="images/tavion-m-photoshoot-2.jpg" alt="Coach Tavion focused" class="cta-gallery__img reveal" data-reveal-delay="120" loading="lazy" decoding="async" />
+              <img src="images/tavion-m-photoshoot-3.jpg" alt="Coach Tavion training" class="cta-gallery__img reveal" data-reveal-delay="160" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -291,7 +288,7 @@
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <section class="wrapper site-footer__platform">
+      <section class="wrapper site-footer__platform" aria-label="Social links">
         <a
           href="https://www.facebook.com/thetitanmethod"
           class="social-link reveal"
@@ -299,7 +296,7 @@
           rel="noopener noreferrer"
           aria-label="The Titan Method on Facebook"
         >
-          <img class="icon" src="images/facebook.png" alt="facebook" />
+          <img class="icon" src="images/facebook.png" alt="facebook" width="32" height="32" loading="lazy" decoding="async" />
         </a>
         <a
           href="https://www.instagram.com/thetitanmethod"
@@ -308,7 +305,7 @@
           rel="noopener noreferrer"
           aria-label="The Titan Method on Instagram"
         >
-          <img class="icon" src="images/instagram.png" alt="instagram" />
+          <img class="icon" src="images/instagram.png" alt="instagram" width="32" height="32" loading="lazy" decoding="async" />
         </a>
         <a
           href="https://www.youtube.com/@thetitanmethod"
@@ -317,7 +314,7 @@
           rel="noopener noreferrer"
           aria-label="The Titan Method on YouTube"
         >
-          <img class="icon" src="images/youtube.png" alt="youtube" />
+          <img class="icon" src="images/youtube.png" alt="youtube" width="32" height="32" loading="lazy" decoding="async" />
         </a>
         <a
           href="https://www.tiktok.com/@thetitanmethod"
@@ -326,7 +323,7 @@
           rel="noopener noreferrer"
           aria-label="The Titan Method on TikTok"
         >
-          <img class="icon" src="images/tiktok.png" alt="tiktok" />
+          <img class="icon" src="images/tiktok.png" alt="tiktok" width="32" height="32" loading="lazy" decoding="async" />
         </a>
       </section>
       <section class="wrapper site-footer__legal">
