@@ -222,8 +222,15 @@
 
         if (!validateFormFields(form)) return;
 
+        // clear fields after success
+        const clearNow = () => { form.reset(); resetFormVisualState(form); };
+
         const successSelector = form.dataset.successModal;
-        if (!successSelector) return;
+        if (!successSelector) {
+          // non-modal forms (e.g., Contact): brief delay so user sees success
+          setTimeout(clearNow, 400);
+          return;
+        }
 
         const nextModalEl = document.querySelector(successSelector);
         if (!nextModalEl || typeof bootstrap === 'undefined' || !bootstrap.Modal) return;
@@ -235,11 +242,13 @@
           const handleHidden = () => {
             currentModalEl.removeEventListener('hidden.bs.modal', handleHidden);
             nextInstance.show();
+            clearNow();
           };
           currentModalEl.addEventListener('hidden.bs.modal', handleHidden);
           currInstance.hide();
         } else {
           new bootstrap.Modal(nextModalEl).show();
+          clearNow();
         }
       });
     });
