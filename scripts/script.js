@@ -3,7 +3,6 @@
   'use strict';
 
   // --------- PREPAINT: force a theme BEFORE the page finishes parsing ---------
-  // If there's a saved theme, use it; otherwise hard-default to DARK.
   (function prepaintTheme() {
     try {
       const key = 'ttm-theme';
@@ -13,17 +12,15 @@
       if (root.getAttribute('data-theme') !== initial) {
         root.setAttribute('data-theme', initial);
       }
-      // Also hint color-scheme immediately to avoid UA default flashes
       root.style.colorScheme = (initial === 'dark') ? 'dark' : 'light';
     } catch (_) {
-      // If storage is blocked, still force dark
       const root = document.documentElement;
       root.setAttribute('data-theme', 'dark');
       root.style.colorScheme = 'dark';
     }
   })();
 
-  /* ---------- THEME (persist across pages) ---------- */
+  // Theme toggle + persistence
   (function theme() {
     const KEY = 'ttm-theme';
     const root = document.documentElement;
@@ -32,7 +29,7 @@
       try {
         const saved = localStorage.getItem(KEY);
         if (saved === 'light' || saved === 'dark') return saved;
-      } catch (_) { /* ignore */ }
+      } catch (_) {}
       return 'dark';
     }
 
@@ -48,14 +45,12 @@
       });
 
       if (persist) {
-        try { localStorage.setItem(KEY, theme); } catch (_) { /* ignore */ }
+        try { localStorage.setItem(KEY, theme); } catch (_) {}
       }
     }
 
-    // Sync UI state with whichever theme is active right now (prepaint already set it)
     apply(getInitial(), { persist: false });
 
-    // Toggle on click
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.js-theme-toggle');
       if (!btn) return;
@@ -63,12 +58,11 @@
       apply(next, { persist: true });
     });
 
-    // Only react to system changes if the user hasn't explicitly chosen
     if (window.matchMedia) {
       const mq = window.matchMedia('(prefers-color-scheme: dark)');
       const onChange = (ev) => {
         let saved = null;
-        try { saved = localStorage.getItem(KEY); } catch (_) { /* ignore */ }
+        try { saved = localStorage.getItem(KEY); } catch (_) {}
         if (saved === 'light' || saved === 'dark') return;
         apply(ev.matches ? 'dark' : 'light', { persist: false });
       };
@@ -76,7 +70,6 @@
       else if (mq.addListener) mq.addListener(onChange);
     }
 
-    // Cross-tab syncing
     window.addEventListener('storage', (ev) => {
       if (ev.key !== KEY) return;
       const v = ev.newValue;
@@ -84,7 +77,7 @@
     });
   })();
 
-  /* ---------- Responsive theme-toggle placement (mobile slot) ---------- */
+  // Move theme toggle to mobile slot when needed
   (function moveThemeToggle() {
     const desktopSlot = document.querySelector('[data-theme-slot-desktop]');
     const mobileSlot  = document.querySelector('[data-theme-slot-mobile]');
@@ -116,7 +109,7 @@
     document.addEventListener('DOMContentLoaded', place);
   })();
 
-  /* ---------- NAV: collapse on any nav-link click ---------- */
+  // Collapse nav after clicking a link
   document.addEventListener('click', (e) => {
     const navLink = e.target.closest('.navbar .nav-link');
     if (!navLink) return;
@@ -126,7 +119,7 @@
     }
   });
 
-  /* ---------- Smooth scroll for same-page anchors ---------- */
+  // Smooth scroll for hash links
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href^="#"]');
     if (!link) return;
@@ -143,7 +136,7 @@
     }
   });
 
-  /* ---------- Optional hero bg fade-in ---------- */
+  // Optional hero bg fade-in
   (function heroBackgroundFade() {
     const hero = document.querySelector('.headline');
     if (!hero) return;
@@ -151,7 +144,7 @@
     setTimeout(() => hero.classList.add('headline--bg-ready'), 300);
   })();
 
-  /* ---------- Validation helpers ---------- */
+  // Validation helpers
   function isEmailValid(value) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test((value || '').trim());
@@ -195,7 +188,7 @@
     return valid;
   }
 
-  /* ---------- Reset form state on modal show/hide ---------- */
+  // Reset forms on modal show/hide
   (function attachModalStateReset() {
     const allModals = document.querySelectorAll('.modal');
     allModals.forEach((modal) => {
@@ -211,7 +204,7 @@
     });
   })();
 
-  /* ---------- Form submit: validate → show success modal (demo only) ---------- */
+  // Demo submit: validate → success modal
   (function initForms() {
     const forms = document.querySelectorAll('.js-validate-form.js-demo-form');
     forms.forEach((form) => {
@@ -252,7 +245,7 @@
     });
   })();
 
-  /* ---------- Scroll-swap (bottom-right button) ---------- */
+  // Scroll swap button
   (function scrollSwap() {
     const btn = document.getElementById('scrollSwap');
     if (!btn) return;
@@ -303,7 +296,7 @@
     });
   })();
 
-  /* ---------- Reveal-on-scroll ---------- */
+  // Reveal on scroll
   (function revealOnScroll() {
     const els = Array.from(document.querySelectorAll('.reveal'));
     if (!('IntersectionObserver' in window) || !els.length) {
