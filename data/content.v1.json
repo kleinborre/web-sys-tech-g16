@@ -3,16 +3,16 @@
   "site": {
     "brand": {
       "name": "The Titan Method",
-      "logoPng": "images/logo.png",
-      "logoWebp": "images/logo.webp",
-      "homeHref": "index.html"
+      "logoPng": "/images/logo.png",
+      "logoWebp": "/images/logo.webp",
+      "homeHref": "/index.html"
     },
     "nav": [
-      { "text": "About", "href": "#about" },
-      { "text": "Program", "href": "#program" },
-      { "text": "Testimonials", "href": "#testimonials" },
-      { "text": "Pricing", "href": "pricing/" },
-      { "text": "Contact", "href": "contact/" }
+      { "text": "About", "href": "/#about" },
+      { "text": "Program", "href": "/#program" },
+      { "text": "Testimonials", "href": "/#testimonials" },
+      { "text": "Pricing", "href": "/pricing/" },
+      { "text": "Contact", "href": "/contact/" }
     ],
     "hero": {
       "title": "Transform Your Life with<br />The Titan Method",
@@ -64,10 +64,10 @@
     "footer": {
       "legal": "© 2025 The Titan Method. All Rights Reserved. Link to Privacy Policy and Terms of Service.",
       "social": [
-        { "name": "Facebook", "href": "https://www.facebook.com/thetitanmethod", "icon": "images/facebook.png" },
-        { "name": "Instagram", "href": "https://www.instagram.com/thetitanmethod", "icon": "images/instagram.png" },
-        { "name": "YouTube", "href": "https://www.youtube.com/@thetitanmethod", "icon": "images/youtube.png" },
-        { "name": "TikTok", "href": "https://www.tiktok.com/@thetitanmethod", "icon": "images/tiktok.png" }
+        { "name": "Facebook", "href": "https://www.facebook.com/thetitanmethod", "icon": "/images/facebook.png" },
+        { "name": "Instagram", "href": "https://www.instagram.com/thetitanmethod", "icon": "/images/instagram.png" },
+        { "name": "YouTube", "href": "https://www.youtube.com/@thetitanmethod", "icon": "/images/youtube.png" },
+        { "name": "TikTok", "href": "https://www.tiktok.com/@thetitanmethod", "icon": "/images/tiktok.png" }
       ]
     }
   }

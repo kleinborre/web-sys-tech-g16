@@ -9,6 +9,16 @@
   }
 
   const CONTENT_URL = resolveContentPath();
+
+  // --- URL normalizer: makes JSON paths work from root and subpages ---
+  const CONTENT_ABS = new URL(CONTENT_URL, location.href);
+  const SITE_BASE = CONTENT_ABS.pathname.replace(/\/data\/.*$/, "/");
+  function toAbs(url) {
+    if (!url) return url;
+    if (/^https?:\/\//i.test(url)) return url;
+    return new URL(url.replace(/^\/+/, ""), `${location.origin}${SITE_BASE}`).toString();
+  }
+
   const LS_KEY = 'ttm-siteContent';
   const LS_VER = 'ttm-siteContentVersion';
 
@@ -44,23 +54,28 @@
   function hydrateBrand(site) {
     if (!site?.brand) return;
     setText('[data-brand-name]', site.brand.name);
-    setAttr('[data-brand-home]', 'href', site.brand.homeHref);
-    setAttr('[data-brand-logo-png]', 'src', site.brand.logoPng);
-    setAttr('[data-brand-logo-webp]', 'srcset', site.brand.logoWebp);
+    setAttr('[data-brand-home]', 'href', toAbs(site.brand.homeHref));
+    setAttr('[data-brand-logo-png]', 'src', toAbs(site.brand.logoPng));
+    setAttr('[data-brand-logo-webp]', 'srcset', toAbs(site.brand.logoWebp));
   }
 
   function hydrateNav(site) {
     const navEl = q('[data-nav]') || document.querySelector('.nav__list');
     if (!navEl || !Array.isArray(site?.nav) || !site.nav.length) return;
+
+    // Normalize existing hrefs so section links work from subpages
     const existingLinks = navEl.querySelectorAll('a.nav-link');
+    existingLinks.forEach(a => { a.href = toAbs(a.getAttribute('href')); });
+
     if (existingLinks.length >= site.nav.length) return;
+
     navEl.innerHTML = '';
     site.nav.forEach(item => {
       const li = document.createElement('li');
       li.className = 'nav-item';
       const a = document.createElement('a');
       a.className = 'nav-link nav__link';
-      a.href = item.href;
+      a.href = toAbs(item.href);
       a.textContent = item.text;
       li.appendChild(a);
       navEl.appendChild(li);
@@ -71,9 +86,9 @@
     setHTML('[data-hero-title]', site.hero?.title);
     setText('[data-hero-subtitle]', site.hero?.subtitle);
     setText('[data-hero-cta1]', site.hero?.primaryCta?.text);
-    setAttr('[data-hero-cta1]', 'href', site.hero?.primaryCta?.href);
+    setAttr('[data-hero-cta1]', 'href', toAbs(site.hero?.primaryCta?.href));
     setText('[data-hero-cta2]', site.hero?.secondaryCta?.text);
-    setAttr('[data-hero-cta2]', 'href', site.hero?.secondaryCta?.href);
+    setAttr('[data-hero-cta2]', 'href', toAbs(site.hero?.secondaryCta?.href));
   }
 
   function hydrateFooter(site) {
@@ -90,7 +105,7 @@
       img.className = 'icon'; img.width = 32; img.height = 32;
       img.loading = 'lazy'; img.decoding = 'async';
       img.alt = s.name.toLowerCase();
-      img.src = s.icon;
+      img.src = toAbs(s.icon);
       a.appendChild(img);
       wrap.appendChild(a);
     });
@@ -136,7 +151,7 @@
     setText('[data-contact-intro]', site.contact?.intro);
     setText('[data-contact-org]', site.contact?.addressCard?.org);
     setText('[data-contact-street]', site.contact?.addressCard?.street);
-    setAttr('[data-contact-map]', 'src', site.contact?.addressCard?.mapEmbed);
+    setAttr('[data-contact-map]', 'src', toAbs(site.contact?.addressCard?.mapEmbed));
 
     const wrap = q('[data-contact-phones]');
     const phones = site.contact?.addressCard?.phones || [];
