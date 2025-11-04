@@ -14,12 +14,12 @@
   <header class="site-header sticky-top">
     <nav class="navbar navbar-expand-lg shadow-sm" role="navigation" aria-label="Primary">
       <div class="container">
-        <a class="navbar-brand d-inline-flex align-items-center brand" href="../index.html" aria-label="The Titan Method Home">
+        <a class="navbar-brand d-inline-flex align-items-center brand" href="../index.html" aria-label="The Titan Method Home" data-brand-home>
           <picture class="me-2">
-            <source type="image/webp" srcset="../images/logo.webp" />
-            <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo" width="48" height="48" loading="eager" decoding="async" />
+            <source type="image/webp" srcset="../images/logo.webp" data-brand-logo-webp />
+            <img src="../images/logo.png" alt="The Titan Method Logo" class="brand__logo" width="48" height="48" loading="eager" decoding="async" data-brand-logo-png />
           </picture>
-          <span class="brand__name">The Titan Method</span>
+          <span class="brand__name" data-brand-name>The Titan Method</span>
         </a>
 
         <button class="navbar-toggler" type="button"
@@ -33,12 +33,11 @@
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html#about">About</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../index.html#program">Program</a></li>
-            <li class="nav-item"><a class="nav-link nav__link" href="../index.html#testimonials">Testimonials</a></li>
             <li class="nav-item"><a class="nav-link nav__link" href="../pricing/">Pricing</a></li>
             <li class="nav-item"><a class="nav-link nav__link active" aria-current="page" href="../contact/">Contact</a></li>
           </ul>
 
-          <div class="ms-lg-3 d-none d-lg-flex">
+          <div class="ms-lg-3 d-none d-lg-flex" data-theme-slot-desktop>
             <button
               type="button"
               class="theme-switch js-theme-toggle"
@@ -67,31 +66,12 @@
     <div class="container site-main__inner">
 
       <section class="wrapper d-lg-none">
-        <div class="d-flex justify-content-end">
-          <button
-            type="button"
-            class="theme-switch theme-switch--mobile js-theme-toggle"
-            aria-label="Toggle dark mode"
-            aria-pressed="false"
-            data-theme-icon="moon"
-          >
-            <span class="theme-switch__track" aria-hidden="true">
-              <svg class="theme-switch__icon theme-switch__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 4.5v-3M12 22.5v-3M4.5 12h-3M22.5 12h-3M5.86 5.86l-2.12-2.12M20.26 20.26l-2.12-2.12M5.86 18.14l-2.12 2.12M20.26 3.74l-2.12 2.12M12 7.5a4.5 4.5 0 1 0 0 9a4.5 4.5 0 0 0 0-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-              <svg class="theme-switch__icon theme-switch__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M21 12.6A8.6 8.6 0 1 1 11.4 3a6.8 6.8 0 1 0 9.6 9.6z" fill="currentColor"/>
-              </svg>
-              <span class="theme-switch__thumb"></span>
-            </span>
-            <span class="visually-hidden">Toggle color theme</span>
-          </button>
-        </div>
+        <div class="d-flex justify-content-end" data-theme-slot-mobile></div>
       </section>
 
       <section class="wrapper">
-        <h1 class="heading heading--title reveal" style="transition-delay:.06s">Contact Us</h1>
-        <p class="p p--primary reveal" style="transition-delay:.12s">Questions, collabs, or coaching inquiries? Send us a message—we’d love to hear from you.</p>
+        <h1 class="heading heading--title reveal" style="transition-delay:.06s" data-contact-title>Contact Us</h1>
+        <p class="p p--primary reveal" style="transition-delay:.12s" data-contact-intro>Questions, collabs, or coaching inquiries? Send us a message—we’d love to hear from you.</p>
       </section>
 
       <section class="wrapper contact contact--map">
@@ -103,13 +83,14 @@
               referrerpolicy="no-referrer-when-downgrade"
               allowfullscreen
               title="Google Map of 600 Congress Ave, Austin, TX 78701"
+              data-contact-map
             ></iframe>
           </div>
 
           <address class="contact__address p p--primary mt-3">
-            <b>The Titan Method (US)</b><br />
-            600 Congress Ave, Austin, TX 78701, USA<br />
-            <span class="contact__phones">
+            <b data-contact-org>The Titan Method (US)</b><br />
+            <span data-contact-street>600 Congress Ave, Austin, TX 78701, USA</span><br />
+            <span class="contact__phones" data-contact-phones>
               Landline: <a href="tel:+15125550199">(512) 555-0199</a><br />
               Business: <a href="tel:+17375550148">(737) 555-0148</a>
             </span>
@@ -189,7 +170,7 @@
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <section class="wrapper site-footer__platform" aria-label="Social links">
+      <section class="wrapper site-footer__platform" aria-label="Social links" data-footer-social>
         <a href="https://www.facebook.com/thetitanmethod" target="_blank" rel="noopener noreferrer" aria-label="The Titan Method on Facebook">
           <img class="icon" src="../images/facebook.png" alt="facebook" width="32" height="32" loading="lazy" decoding="async" />
         </a>
@@ -204,12 +185,13 @@
         </a>
       </section>
       <section class="wrapper site-footer__legal">
-        <p>&copy; 2025 The Titan Method. All Rights Reserved. Link to Privacy Policy and Terms of Service.</p>
+        <p data-footer-legal>&copy; 2025 The Titan Method. All Rights Reserved. Link to Privacy Policy and Terms of Service.</p>
       </section>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../scripts/content-loader.js" defer></script>
   <script src="../scripts/script.js" defer></script>
 </body>
 </html>

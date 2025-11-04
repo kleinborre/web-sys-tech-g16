@@ -1,0 +1,74 @@
+{
+  "version": "1",
+  "site": {
+    "brand": {
+      "name": "The Titan Method",
+      "logoPng": "images/logo.png",
+      "logoWebp": "images/logo.webp",
+      "homeHref": "index.html"
+    },
+    "nav": [
+      { "text": "About", "href": "#about" },
+      { "text": "Program", "href": "#program" },
+      { "text": "Testimonials", "href": "#testimonials" },
+      { "text": "Pricing", "href": "pricing/" },
+      { "text": "Contact", "href": "contact/" }
+    ],
+    "hero": {
+      "title": "Transform Your Life with<br />The Titan Method",
+      "subtitle": "Join thousands who rebuilt their health, strength, and confidence.",
+      "primaryCta": { "text": "Start Your 7-Day Free Trial", "href": "pricing/" },
+      "secondaryCta": { "text": "Watch Client Transformations", "href": "#testimonials" }
+    },
+    "pricing": {
+      "headline": "Choose Your Membership",
+      "intro": "Pick the plan that fits your goals. Upgrade or cancel anytime.",
+      "plans": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "priceOld": "$12.99/mo",
+          "trialBadge": "FREE trial for 7 days",
+          "ctaText": "FREE trial for 7 days"
+        },
+        {
+          "id": "premium",
+          "name": "Premium",
+          "price": "$24.99/mo",
+          "priceOld": "$34.99",
+          "badge": "Most Popular",
+          "ctaText": "Go Premium"
+        },
+        {
+          "id": "vip",
+          "name": "VIP",
+          "price": "$59.00/mo",
+          "priceOld": "$79.00",
+          "ctaText": "Join VIP"
+        }
+      ]
+    },
+    "contact": {
+      "title": "Contact Us",
+      "intro": "Questions, collabs, or coaching inquiries? Send us a message—we’d love to hear from you.",
+      "addressCard": {
+        "org": "The Titan Method (US)",
+        "street": "600 Congress Ave, Austin, TX 78701, USA",
+        "phones": [
+          { "label": "Landline", "number": "(512) 555-0199", "tel": "+15125550199" },
+          { "label": "Business", "number": "(737) 555-0148", "tel": "+17375550148" }
+        ],
+        "mapEmbed": "https://www.google.com/maps?q=600+Congress+Ave,+Austin,+TX+78701&output=embed"
+      }
+    },
+    "footer": {
+      "legal": "© 2025 The Titan Method. All Rights Reserved. Link to Privacy Policy and Terms of Service.",
+      "social": [
+        { "name": "Facebook", "href": "https://www.facebook.com/thetitanmethod", "icon": "images/facebook.png" },
+        { "name": "Instagram", "href": "https://www.instagram.com/thetitanmethod", "icon": "images/instagram.png" },
+        { "name": "YouTube", "href": "https://www.youtube.com/@thetitanmethod", "icon": "images/youtube.png" },
+        { "name": "TikTok", "href": "https://www.tiktok.com/@thetitanmethod", "icon": "images/tiktok.png" }
+      ]
+    }
+  }
+}

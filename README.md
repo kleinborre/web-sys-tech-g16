@@ -2,9 +2,6 @@
 
 **HTML5 • Modern CSS • Bootstrap 5.3 • Vanilla JS • GitHub Pages**
 
-**Disclaimer**
-An earlier build used a “Lead Capture: Local Storage + JSON Download (no backend)” flow. We removed it due to privacy risk (client-side downloads of user data) and because the course scope is a static site with no backend. This capability will be revisited in the advanced course.
-
 ## Team
 
 | Member                  | Role(s)                                                            |
@@ -18,7 +15,7 @@ An earlier build used a “Lead Capture: Local Storage + JSON Download (no backe
 
 ## Project Purpose
 
-Build a fast, accessible, mobile-first site that converts visitors into trial sign-ups and paid tiers for **The Titan Method** by Coach Tavion Miles. Static, GitHub Pages–ready. Bootstrap JS modals and client-side validation only (no data persistence).
+Build a fast, accessible, mobile-first site that converts visitors into trial sign-ups and paid tiers for **The Titan Method** by Coach Tavion Miles. Static, GitHub Pages–ready. Uses Bootstrap JS modals and client-side validation (no backend).
 
 **Core pages**
 
@@ -30,22 +27,20 @@ Build a fast, accessible, mobile-first site that converts visitors into trial si
 
 ## What’s Included
 
-* **Bootstrap 5.3** utilities (containers, grid, spacing)
-* **Theme system (dark-first)**: default dark, prepainted to avoid flashes; toggle persists via `localStorage`
-* **Responsive layout**: Flexbox/Grid across sections (`.wrapper`, `.about__main`, program/testimonials rows)
-* **Accessible modals**: Bootstrap JS, focus-trap, ESC to close
-* **Form UX**: Required fields, inline alerts, success modals
-* **Keyboard/A11y**: `:focus-visible`, ARIA, reduced-motion support
-* **Scroll helper**: Floating “scroll to footer/top” button
-* **Code hygiene**: Scoped selectors, single CSS/JS bundle
+* **JSON-driven content bundle**: `/data/content.v1.json` + client hydrator (`/scripts/content-loader.js`) to fill brand, nav, hero, pricing, contact, and footer.
+* **Bootstrap 5.3** (CDN) for layout/utilities and accessible JS modals.
+* **Theme system (dark-first)** with prepaint to prevent FOUC; toggle persists via `localStorage`.
+* **Responsive layout** (Flex/Grid) and refined tablet/desktop breakpoints.
+* **Form UX** with inline alerts + success modals (demo only, no persistence).
+* **A11y**: focus states, ARIA labels, reduced-motion support.
+* **Scroll helper** (bottom-right) that smart-flips top/footer intent.
+* **Single CSS/JS bundle** for site behavior; scoped selectors and events.
 
 ---
 
 ## GitHub Page Link
 
-This link will take you to our webpage:
-
-**https://kleinborre.github.io/web-sys-tech-g16/**
+**[https://kleinborre.github.io/web-sys-tech-g16/](https://kleinborre.github.io/web-sys-tech-g16/)**
 
 ---
 
@@ -58,15 +53,55 @@ This link will take you to our webpage:
 │  └─ index.html
 ├─ contact/
 │  └─ index.html
+├─ data/
+│  └─ content.v1.json
 ├─ styles/
 │  └─ style.css
 ├─ scripts/
+│  ├─ content-loader.js
 │  └─ script.js
 └─ images/
 ```
 
-* One global CSS and one global JS
+* One global CSS and one behavior script (`script.js`)
+* **New:** `content-loader.js` hydrates the DOM from `data/content.v1.json`
 * Bootstrap 5.3 via CDN (CSS + bundle JS)
+
+---
+
+## JSON Content System (New)
+
+**Endpoint:** `/data/content.v1.json`
+**Loader:** `/scripts/content-loader.js`
+
+**How it works**
+
+* On `DOMContentLoaded`, the loader fetches the JSON (no-store).
+* The loader **version-checks** via `site.version` and caches content in `localStorage`:
+
+  * Keys: `ttm-siteContent` and `ttm-siteContentVersion`
+  * If fetch fails (offline), it falls back to the cached copy.
+* It **hydrates** specific regions:
+
+  * **Brand:** name, logo (png/webp), home link
+  * **Nav:** menu items
+  * **Hero:** title, subtitle, primary/secondary CTA
+  * **Pricing:** headline, intro, plan names/prices/badges/cta text
+  * **Contact:** title, intro, address card (org/street/phones/map)
+  * **Footer:** legal text, social links (icons + hrefs)
+
+**When to bump version**
+
+* Any time you change visible content in the JSON, increment `"version"` in `content.v1.json`.
+* Keep selectors stable (`data-*` hooks) or update the loader accordingly.
+
+**Key selectors (examples)**
+
+* Brand: `[data-brand-name]`, `[data-brand-home]`, `[data-brand-logo-png]`, `[data-brand-logo-webp]`
+* Hero: `[data-hero-title]`, `[data-hero-subtitle]`, `[data-hero-cta1]`, `[data-hero-cta2]`
+* Pricing: `[data-pricing-title]`, `[data-pricing-intro]`, per-plan hooks like `[data-plan-premium-price]`
+* Contact: `[data-contact-title]`, `[data-contact-intro]`, `[data-contact-map]`, `[data-contact-phones]`
+* Footer: `[data-footer-legal]`, container `[data-footer-social]`
 
 ---
 
@@ -86,45 +121,53 @@ python -m http.server 8080
 
 ## Features
 
-### 1) Theming
+### 1) JSON-Driven Content
 
-* **Dark-first default** with prepaint (sets `data-theme="dark"` and `color-scheme: dark` ASAP to prevent flash)
-* Desktop + mobile toggles
-* Persists with `localStorage` key `ttm-theme` (`light`/`dark`)
-* Honors `prefers-color-scheme` only if user hasn’t chosen
+* Single source of truth in `data/content.v1.json`.
+* Hydration across all pages via `content-loader.js`.
+* Versioned caching with offline fallback to last good content.
 
-### 2) Forms & Success Flow
+### 2) Theming
 
-* Forms use `.js-validate-form.js-demo-form`
-* Required: `name`, `email` (+ `subject`, `message` on Contact)
-* On success: green alert; matching success modal opens (e.g., Contact → `#contactSuccess`)
+* **Dark-first** default with prepaint (`data-theme="dark"` and `color-scheme: dark`).
+* Desktop + mobile toggles.
+* Persists with `localStorage` key `ttm-theme` (`light`/`dark`).
+* Honors `prefers-color-scheme` only if the user hasn’t chosen.
 
-### 3) Accessibility
+### 3) Forms & Success Flow
 
-* Proper labels/ids, `:focus-visible`, ARIA on modals
-* Animations respect reduced-motion
-* All informative images have descriptive `alt`
+* Forms use `.js-validate-form.js-demo-form`.
+* Required: `name`, `email` (+ `subject`, `message` on Contact).
+* On success: green alert; matching success modal opens (e.g., Contact → `#contactSuccess`).
+* **No storage / no network submits** (demo only).
 
-### 4) Layout, Typography & Responsiveness
+### 4) Accessibility
 
-* **Layout classes implemented** for predictable section structure (`.wrapper`, `.about__main`, program/testimonials splits)
-* **Responsive rules**: mobile-first with breakpoint refinements for tablets and desktops
-* **Typography**: increased paragraph line height for readability on all viewports
+* Proper labels/ids, `:focus-visible`, ARIA on modals.
+* Animations respect reduced-motion.
+* Informative images have descriptive `alt`.
 
-### 5) Performance & UX
+### 5) Layout, Typography & Responsiveness
 
-* Modern CSS (`clamp`, variables)
-* Subtle card hover/active feedback
-* Scroll helper flips intent based on position
+* Section scaffolding with `.wrapper`, `.about__main`, program/testimonials splits.
+* Mobile-first with balanced tablet/desktop refinements.
+* Readable line-height defaults across breakpoints.
+
+### 6) Performance & UX
+
+* Modern CSS (variables, `clamp`).
+* Subtle card hover/active states.
+* Scroll helper flips top/footer based on position.
 
 ---
 
 ## Development Standards
 
-* Keep README in sync with behavior
-* Prefer Bootstrap utilities for layout; layer custom Flex/Grid where needed
-* Scope JS to intent-specific elements; don’t block defaults globally
-* Remove unused CSS/JS/HTML before committing
+* Keep README, JSON, and code **in sync**.
+* **Bump `site.version`** in `content.v1.json` whenever visible content changes.
+* Prefer Bootstrap utilities for layout; layer custom Flex/Grid where needed.
+* Scope JS to intent-specific elements; no global `preventDefault()` on all forms.
+* Remove unused CSS/JS/HTML before committing.
 * New forms must include:
 
   * `.js-validate-form.js-demo-form`
@@ -136,26 +179,27 @@ python -m http.server 8080
 
 ## Testing Checklist (Manual)
 
-**Navigation** — Mobile toggler works; active link highlighted
-**Theme** — Dark is default; toggle preserves choice; contrast OK
-**Layout/Responsive** — Sections align correctly (about/program/testimonials); stack gracefully on small screens; tablet breakpoints verified
-**Typography** — Paragraph line height improves readability across viewports
+**Navigation** — Links match JSON; mobile toggler collapses after click
+**Theme** — Dark is default; toggle persists; contrast OK
+**JSON/Hydration** — Brand/nav/hero/pricing/contact/footer reflect JSON values; badge/CTA text updated; **offline fallback works** after one successful load
+**Layout/Responsive** — Sections align; stack gracefully on small screens; tablet breakpoints verified
+**Typography** — Paragraph line height readable across viewports
 **Pricing** — CTAs open the correct modal; required fields enforced
 **Contact** — Required fields enforced; `#contactSuccess` opens
 **Keyboard** — Enter submits; ESC closes modals; tab cycles correctly
-**Console** — No errors; no network calls
+**Console** — No errors; JSON fetch returns 200; no unexpected network calls
 
 ---
 
 ## Simple Issue Tracking (Current Sprint)
 
-> The first three entries address layout, responsiveness, and typography. **Owner: Abegail**.
+> First three entries address layout, responsiveness, and typography. **Owner: Abegail**.
 
 | ID  | Item                                                                                                | Owner   | Status          |
 | --- | --------------------------------------------------------------------------------------------------- | ------- | --------------- |
 | T01 | Implement section layouts using Flex/Grid (`.wrapper`, `.about__main`, program/testimonials splits) | Abegail | Done            |
-| T02 | Add mobile-first media queries; refine tablet/desktop breakpoints for balanced stacking             | Abegail | Done            |
-| T03 | Increase paragraph line height for readability across all viewports                                 | Abegail | Done            |
+| T02 | Add mobile-first media queries; refine tablet/desktop breakpoints                                   | Abegail | Done            |
+| T03 | Increase paragraph line height for readability                                                      | Abegail | Done            |
 | T04 | Replace CSS `:target` modals with Bootstrap JS modals                                               | Oliver  | Done            |
 | T05 | Scope handlers to `.js-validate-form.js-demo-form` only                                             | Oliver  | Done            |
 | T06 | Add Address field to all pricing modals                                                             | Oliver  | Done            |
@@ -163,8 +207,8 @@ python -m http.server 8080
 | T08 | Alt text pass on informative images                                                                 | Emmar   | Done            |
 | T09 | Remove unused CSS/JS/HTML                                                                           | Oliver  | Done            |
 | T10 | README sync with current implementation                                                             | Alvin   | Done            |
-| T11 | QA pass against checklist                                                                           | Emmar   | In Progress     |
-| T12 | Deprecate legacy lead capture (localStorage/JSON); remove from docs                                 | Oliver  | Done            |
+| T11 | QA pass against checklist                                                                           | Emmar   | Done            |
+| T12 | **Introduce JSON bundle + hydrator; add versioned caching & fallback**                              | Oliver  | Done            |
 | T13 | External Testing (Homework)                                                                         | Team    | Pending (Nov 3) |
 
 ---
@@ -187,15 +231,14 @@ python -m http.server 8080
 
 ## Changelog (Latest)
 
-* **Theme**: Dark-first default with prepaint; `color-scheme` hint to prevent flash
-* **Layout**: Implemented Flex/Grid structure for sections; cleaned single-page alignment
-* **Responsive**: Added mobile-first breakpoints; tablet/desktop refinements
-* **Typography**: Increased paragraph line height for readability
-* Unified success-modal flow; validation trimmed and scoped
-* Pricing modals include Address input
-* Scroll helper logic refined
-* Images now served as WebP with fallbacks
-* README synchronized with codebase
+* **NEW:** JSON-driven content bundle (`/data/content.v1.json`) + hydrator (`/scripts/content-loader.js`)
+* **Caching:** `localStorage` with version key; offline fallback to last good content
+* **Theme:** Dark-first prepaint; `color-scheme` hint to prevent flash
+* **Layout/Responsive:** Flex/Grid structure, mobile-first breakpoints
+* **Typography:** Improved line height for readability
+* **UX:** Unified success-modal flow; refined scroll helper
+* **Assets:** WebP with PNG fallbacks
+* README synchronized with current implementation
 
 ---
 
