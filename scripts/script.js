@@ -230,6 +230,7 @@
 
         const currentModalEl = form.closest('.modal.show');
         if (currentModalEl) {
+          // Modal → Modal flow (pricing forms) — unchanged
           const currInstance = bootstrap.Modal.getInstance(currentModalEl) || new bootstrap.Modal(currentModalEl);
           const nextInstance = new bootstrap.Modal(nextModalEl);
           const handleHidden = () => {
@@ -239,7 +240,10 @@
           currentModalEl.addEventListener('hidden.bs.modal', handleHidden);
           currInstance.hide();
         } else {
+          // Page form (e.g., contact): show success modal AND auto-clear fields immediately
           new bootstrap.Modal(nextModalEl).show();
+          resetFormVisualState(form);
+          form.reset();
         }
       });
     });

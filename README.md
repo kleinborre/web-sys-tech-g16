@@ -90,6 +90,13 @@ Build a fast, accessible, mobile-first site that converts visitors into trial si
   * **Contact:** title, intro, address card (org/street/phones/map)
   * **Footer:** legal text, social links (icons + hrefs)
 
+**Path safety (subpages)**
+
+* The loader resolves **page links** and **asset paths** so images and icons load on `/pricing/` and `/contact/`:
+
+  * `resolvePagePath()` for links like `index.html`, `pricing/`, `contact/`
+  * `resolveAssetPath()` for JSON-provided assets like `images/logo.png`, footer icons
+
 **When to bump version**
 
 * Any time you change visible content in the JSON, increment `"version"` in `content.v1.json`.
@@ -126,6 +133,7 @@ python -m http.server 8080
 * Single source of truth in `data/content.v1.json`.
 * Hydration across all pages via `content-loader.js`.
 * Versioned caching with offline fallback to last good content.
+* **Subpage-safe assets:** logo + footer icons resolve correctly on `/pricing/` and `/contact/`.
 
 ### 2) Theming
 
@@ -139,6 +147,7 @@ python -m http.server 8080
 * Forms use `.js-validate-form.js-demo-form`.
 * Required: `name`, `email` (+ `subject`, `message` on Contact).
 * On success: green alert; matching success modal opens (e.g., Contact → `#contactSuccess`).
+* **Contact page enhancement:** after a successful send, the **contact form auto-clears** all fields.
 * **No storage / no network submits** (demo only).
 
 ### 4) Accessibility
@@ -182,10 +191,11 @@ python -m http.server 8080
 **Navigation** — Links match JSON; mobile toggler collapses after click
 **Theme** — Dark is default; toggle persists; contrast OK
 **JSON/Hydration** — Brand/nav/hero/pricing/contact/footer reflect JSON values; badge/CTA text updated; **offline fallback works** after one successful load
+**Assets (Subpages)** — **Logo and footer icons load on** `/pricing/` **and** `/contact/`
 **Layout/Responsive** — Sections align; stack gracefully on small screens; tablet breakpoints verified
 **Typography** — Paragraph line height readable across viewports
 **Pricing** — CTAs open the correct modal; required fields enforced
-**Contact** — Required fields enforced; `#contactSuccess` opens
+**Contact** — Required fields enforced; `#contactSuccess` opens; **fields auto-clear after success**
 **Keyboard** — Enter submits; ESC closes modals; tab cycles correctly
 **Console** — No errors; JSON fetch returns 200; no unexpected network calls
 
@@ -195,21 +205,23 @@ python -m http.server 8080
 
 > First three entries address layout, responsiveness, and typography. **Owner: Abegail**.
 
-| ID  | Item                                                                                                | Owner   | Status          |
-| --- | --------------------------------------------------------------------------------------------------- | ------- | --------------- |
-| T01 | Implement section layouts using Flex/Grid (`.wrapper`, `.about__main`, program/testimonials splits) | Abegail | Done            |
-| T02 | Add mobile-first media queries; refine tablet/desktop breakpoints                                   | Abegail | Done            |
-| T03 | Increase paragraph line height for readability                                                      | Abegail | Done            |
-| T04 | Replace CSS `:target` modals with Bootstrap JS modals                                               | Oliver  | Done            |
-| T05 | Scope handlers to `.js-validate-form.js-demo-form` only                                             | Oliver  | Done            |
-| T06 | Add Address field to all pricing modals                                                             | Oliver  | Done            |
-| T07 | Keyboard: Enter submits; ESC closes modals                                                          | Oliver  | Done            |
-| T08 | Alt text pass on informative images                                                                 | Emmar   | Done            |
-| T09 | Remove unused CSS/JS/HTML                                                                           | Oliver  | Done            |
-| T10 | README sync with current implementation                                                             | Alvin   | Done            |
-| T11 | QA pass against checklist                                                                           | Emmar   | Done            |
-| T12 | **Introduce JSON bundle + hydrator; add versioned caching & fallback**                              | Oliver  | Done            |
-| T13 | External Testing (Homework)                                                                         | Team    | Pending (Nov 3) |
+| ID      | Item                                                                                                | Owner   | Status          |
+| ------- | --------------------------------------------------------------------------------------------------- | ------- | --------------- |
+| T01     | Implement section layouts using Flex/Grid (`.wrapper`, `.about__main`, program/testimonials splits) | Abegail | Done            |
+| T02     | Add mobile-first media queries; refine tablet/desktop breakpoints                                   | Abegail | Done            |
+| T03     | Increase paragraph line height for readability                                                      | Abegail | Done            |
+| T04     | Replace CSS `:target` modals with Bootstrap JS modals                                               | Oliver  | Done            |
+| T05     | Scope handlers to `.js-validate-form.js-demo-form` only                                             | Oliver  | Done            |
+| T06     | Add Address field to all pricing modals                                                             | Oliver  | Done            |
+| T07     | Keyboard: Enter submits; ESC closes modals                                                          | Oliver  | Done            |
+| T08     | Alt text pass on informative images                                                                 | Emmar   | Done            |
+| T09     | Remove unused CSS/JS/HTML                                                                           | Oliver  | Done            |
+| T10     | README sync with current implementation                                                             | Alvin   | Done            |
+| T11     | QA pass against checklist                                                                           | Emmar   | Done            |
+| T12     | **Introduce JSON bundle + hydrator; add versioned caching & fallback**                              | Oliver  | Done            |
+| **T14** | **Fix subpage assets:** logo + footer icons now load on `/pricing/` and `/contact/` (path resolver) | Oliver  | Done            |
+| **T15** | **Contact UX:** auto-clear fields after successful “Send Message”                                   | Oliver  | Done            |
+| T13     | External Testing (Homework)                                                                         | Team    | Pending (Nov 3) |
 
 ---
 
@@ -231,6 +243,8 @@ python -m http.server 8080
 
 ## Changelog (Latest)
 
+* **Fix:** Logo + footer icons now load correctly on `/pricing/` and `/contact/` via JSON asset path resolution.
+* **Enhancement (Contact):** After successful **Send Message**, all contact fields **auto-clear**.
 * **NEW:** JSON-driven content bundle (`/data/content.v1.json`) + hydrator (`/scripts/content-loader.js`)
 * **Caching:** `localStorage` with version key; offline fallback to last good content
 * **Theme:** Dark-first prepaint; `color-scheme` hint to prevent flash
