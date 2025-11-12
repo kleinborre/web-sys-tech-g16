@@ -221,7 +221,7 @@ python -m http.server 8080
 | T12     | **Introduce JSON bundle + hydrator; add versioned caching & fallback**                              | Oliver  | Done            |
 | **T14** | **Fix subpage assets:** logo + footer icons now load on `/pricing/` and `/contact/` (path resolver) | Oliver  | Done            |
 | **T15** | **Contact UX:** auto-clear fields after successful “Send Message”                                   | Oliver  | Done            |
-| T13     | External Testing (Homework)                                                                         | Team    | Pending (Nov 3) |
+| T13     | External Testing (Homework)                                                                         | Team    | Done            |
 
 ---
 
@@ -235,9 +235,9 @@ python -m http.server 8080
 | Milestone 1 Submission – HTML/CSS (no Bootstrap/JS) | 29-Sep-2025         | Done    |
 | Milestone 2 – Interactive Website (Draft)           | 20-Oct-2025         | Done    |
 | Milestone 2 – Interactive Website (Submission)      | 27-Oct-2025         | Done    |
-| Homework: Testing (External)                        | 03-Nov-2025         | Pending |
-| Terminal Assessment – Refined & Tested (Draft)      | 10-Nov-2025         | Pending |
-| Terminal Assessment – Refined & Tested (Submission) | 17-Nov-2025         | Pending |
+| Homework: Testing (External)                        | 03-Nov-2025         | Done    |
+| Terminal Assessment – Refined & Tested (Draft)      | 10-Nov-2025         | Done    |
+| Terminal Assessment – Refined & Tested (Submission) | 17-Nov-2025         | Done    |
 
 ---
 
